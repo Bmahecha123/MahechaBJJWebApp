@@ -1,8 +1,32 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 
-export default  class Header extends React.Component {
+import Login from './login';
+
+export default class Header extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            isLoggedIn: this.props.isLoggedIn
+        };
+    }
+
+    handleLogin = (isLoggedIn, user) => {
+        if (isLoggedIn) {
+            this.setState({
+                isLoggedIn: isLoggedIn
+            });
+
+            console.log('here is the user from the header component!!');
+            console.dir(user);
+        } else {
+            this.setState({
+                isLoggedIn: isLoggedIn
+            });
+        }
+    }
+
     render() {
         return (
             <header>
@@ -14,6 +38,7 @@ export default  class Header extends React.Component {
                         <li><Link to='/blog'>Blog</Link></li>
                     </ul>
                 </nav>
+                <Login onLogin={this.handleLogin} loggedIn={this.state.isLoggedIn} />
             </header>
         );
     }
