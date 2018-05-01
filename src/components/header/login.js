@@ -1,4 +1,7 @@
 import React from 'react';
+import { UserService } from '../../services/user.service';
+
+const userService = new UserService();
 
 export default class Login extends React.Component {
 
@@ -8,21 +11,11 @@ export default class Login extends React.Component {
     
     handleLogin = async () => {
         let userName = document.getElementById('userName').value;
-        //let passWord = document.getElementById('passWord').value;
-
-        let service = 'http://localhost:8080/'
-
-        let request = await fetch(`${service}/user/getUser`, {
-            headers: {
-                'X-EMAIL': userName
-            },
-            mode: 'cors'
-        });
-        let json = await request.json();
-        console.log('Here is the response!');
-        console.dir(json);
-
-        this.props.onLogin(true, json);
+        let passWord = document.getElementById('passWord').value;
+        
+        let user = await userService.login(userName, passWord);
+        console.dir(user);
+        this.props.onLogin(true, user);
     } 
 
     handleLogout = () => {
@@ -30,7 +23,7 @@ export default class Login extends React.Component {
     }
 
     render() {
-        console.log('logged in issss!' + this.props.loggedIn);
+        console.log('user issssss ', this.props.loggedIn);
         if (this.props.loggedIn) {
             return (
                 <button onClick={this.handleLogout}>Logout</button>
