@@ -1,17 +1,4 @@
-
-const BASEURL = process.env.USER_SERVICE || `https://mahechabjj.cfapps.io/`;
-const ENDPOINTS = {
-    login: 'user/findByEmail',
-    findUserById: 'user/findById',
-    findUserByEmail: 'user/getUser',
-    changePassword: 'password/changePassword',
-    addPlaylist: 'user/addplaylist/',
-    getPlaylists: 'user/getplaylists/',
-    getPlaylist: 'user/getplaylist/',
-    updatePlaylist: 'user/updatePlaylists/',
-    deletePlaylist: 'user/deleteplaylist/',
-    deleteVideo: 'user/deleteVideo/'
-};
+import { BASEURL, ENDPOINTS } from '../resources/constants';
 
 export class UserService {
     login = async (email, password) => {
@@ -25,7 +12,7 @@ export class UserService {
             });
 
             if (request.status !== 200) {
-                throw 'Unable to fetch user.';
+                throw {status: request.status};
             }
     
             let json = await request.json();
@@ -46,7 +33,7 @@ export class UserService {
             });
 
             if (request.status !== 200) {
-                throw 'Unable to fetch user.';
+                throw {status: request.status};
             }
     
             let json = await request.json();
