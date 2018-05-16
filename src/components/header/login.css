@@ -1,0 +1,14 @@
+form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+input, button {
+    border: none;
+    margin: 10px;
+    padding: 5px;
+    outline: none;
+    border-radius: 7px;
+}
+

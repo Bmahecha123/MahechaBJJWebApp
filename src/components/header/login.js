@@ -1,8 +1,18 @@
 import React from 'react';
 import { UserService } from '../../services/user.service';
 import { LOCALSTORAGE } from '../../resources/constants';
+import './login.css';
+import { colors, fontSizing, fontStyles } from '../../theme';
 
 const userService = new UserService();
+
+//styles
+const inputStyles = {
+    color: colors.primaryTextColor,
+    fontSize: fontSizing.small,
+    fontWeight: fontStyles.normal,
+    boxShadow: colors.boxShadow
+};
 
 export default class Login extends React.Component {
 
@@ -29,11 +39,11 @@ export default class Login extends React.Component {
         let userName = document.getElementById('userName').value;
         let passWord = document.getElementById('passWord').value;
         let loginBtn = document.getElementById('loginBtn');
+        
         loginBtn.disabled = true;
         //DISABLE BUTTON ON CLICK AND REENABLE AFTER REQUEST IS DONE!
         //ON SUCCESSFUL REQUEST SAVE SESSION IN LOCALSTORAGE
         //ON LOGOUT REMOVE SESSION FROM LOCALSTORAGE
-
         let user = await userService.login(userName, passWord);
 
         if (user.status) {
@@ -49,28 +59,15 @@ export default class Login extends React.Component {
         }
     }
 
-    handleLogout = () => {
-        localStorage.removeItem(LOCALSTORAGE.userName);
-        !localStorage.getItem(LOCALSTORAGE.userName) ?
-            console.log('User removed from local storage.') :
-            console.log('User has not been removed from local storage.');
-
-        this.props.onLogin(false, null);
-    }
-
     render() {
         console.log('user issssss ', this.props.loggedIn);
-        if (this.props.loggedIn) {
+        if (!this.props.loggedIn) {
             return (
-                <button onClick={this.handleLogout}>Logout</button>
-            );
-        } else {
-            return (
-                <div>
-                    <input id="userName" type="text" name="username" placeholder="SpiderGuard123@gmail.com" />
-                    <input id="passWord" type="password" name="password" placeholder="Password" />
-                    <button id="loginBtn" onClick={this.handleLogin}>Login</button>
-                </div>
+                <form>
+                    <input id="userName" style={inputStyles} type="text" name="username" placeholder="Username" />
+                    <input id="passWord" style={inputStyles} type="password" name="password" placeholder="Password" />
+                    <button id="loginBtn" style={inputStyles} type="submit" onClick={this.handleLogin}>Login</button>
+                </form>
             );
         }
     }

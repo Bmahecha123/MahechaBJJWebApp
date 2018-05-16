@@ -1,0 +1,27 @@
+header {
+    display: flex;
+    flex-direction: column;
+}
+
+ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+li {
+    list-style-type: none;
+    border-radius: 7px;
+    margin: 10px;
+    padding: 5px;
+}
+
+li:active {
+    background-color: rgba(53, 64, 134, 0.60);
+}
+
+li:hover {
+    cursor: pointer;
+}
+

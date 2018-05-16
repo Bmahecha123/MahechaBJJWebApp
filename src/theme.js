@@ -5,11 +5,16 @@ const palette = {
     red: "#7c2529"
 };
 
+const fontStyles = {
+    normal: "400",
+    bold: "700"
+};
+
 const colors = {
     primaryTextColor: palette.black,
     backgroundColor: palette.white,
     buttonBackgroundColor: palette.blue,
-    boxShadow: "0 2px 14px 4px rgba(53, 64, 134, 0.60);"
+    boxShadow: "0 2px 14px 4px rgba(53, 64, 134, 0.60)",
 };
 
 const spacing = {
@@ -26,4 +31,4 @@ const fontSizing = {
     xlarge: "4rem"
 };
 
-export { colors, spacing, fontSizing };
+export { colors, spacing, fontSizing, fontStyles };
