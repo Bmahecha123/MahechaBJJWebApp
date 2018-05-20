@@ -14,18 +14,20 @@ const headerStyles = {
 };
 
 const liStyles = {
+    backgroundColor: colors.buttonBackgroundColor,
     boxShadow: colors.boxShadow,
     fontWeight: fontStyles.bold
  };
 
 const linkStyles = {
     textDecoration: 'none',
-    color: colors.primaryTextColor,
+    color: colors.backgroundColor,
     fontSize: fontSizing.medium
 };
 
 const buttonStyles = {
     ...linkStyles,
+    backgroundColor: colors.buttonBackgroundColor,
     boxShadow: colors.boxShadow
 };
 

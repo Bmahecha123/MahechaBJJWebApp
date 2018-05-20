@@ -15,6 +15,11 @@ const inputStyles = {
     boxShadow: colors.boxShadow
 };
 
+const inputButtonStyles = {
+    backgroundColor: colors.buttonBackgroundColor,
+    color: colors.backgroundColor
+};
+
 const pStyles = {
     fontSize: fontSizing.medium,
     padding: 0,
@@ -26,7 +31,8 @@ const pStyles = {
 const buttonStyles = {
     padding: spacing.xsmall,
     margin: 0,
-    color: colors.primaryTextColor,
+    backgroundColor: colors.buttonBackgroundColor,
+    color: colors.backgroundColor,
     fontSize: fontSizing.medium,
     boxShadow: colors.boxShadow,
 
@@ -103,7 +109,7 @@ export default class Login extends React.Component {
                 <form>
                     <input id="userName" style={inputStyles} type="text" name="username" placeholder="Username" />
                     <input id="passWord" style={inputStyles} type="password" name="password" placeholder="Password" />
-                    <button id="loginBtn" style={inputStyles} type="submit" onClick={this.handleLogin}>Login</button>
+                    <button id="loginBtn" style={{...inputStyles, ...inputButtonStyles}} type="submit" onClick={this.handleLogin}>Login</button>
                 </form>
             );
         }
