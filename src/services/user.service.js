@@ -12,6 +12,7 @@ export class UserService {
             });
 
             if (request.status !== 200) {
+                // eslint-disable-next-line
                 throw {status: request.status};
             }
     
@@ -33,6 +34,7 @@ export class UserService {
             });
 
             if (request.status !== 200) {
+                // eslint-disable-next-line
                 throw {status: request.status};
             }
     
@@ -54,6 +56,7 @@ export class UserService {
             });
 
             if (request.status !== 200) {
+                // eslint-disable-next-line
                 throw 'Unable to fetch user.';
             }
     
@@ -72,6 +75,7 @@ export class UserService {
             });
             
             if (request.status !== 200) {
+                // eslint-disable-next-line
                 throw 'Unable to fetch Playlists.';
             }
 
@@ -93,6 +97,7 @@ export class UserService {
             });
 
             if (request.status !== 200) {
+                // eslint-disable-next-line
                 throw 'Unable to get Playlist.';
             }
 

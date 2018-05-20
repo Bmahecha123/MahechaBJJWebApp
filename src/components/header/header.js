@@ -8,6 +8,11 @@ import { LOCALSTORAGE } from '../../resources/constants';
 import './header.css';
 
 //syles
+const headerStyles = {
+    marginTop: spacing.xsmall,
+    marginBottom: spacing.xsmall
+};
+
 const liStyles = {
     boxShadow: colors.boxShadow,
     fontWeight: fontStyles.bold
@@ -87,7 +92,7 @@ export default class Header extends React.Component {
     render() {
         if (this.state.isLoggedIn) {
             return (
-                <header>
+                <header style={headerStyles}>
                     <nav>
                         <ul>
                             <li style={liStyles}><Link style={linkStyles} to='/'>Home</Link></li>
@@ -108,7 +113,7 @@ export default class Header extends React.Component {
             );
         } else {
             return (
-                <header>
+                <header style={headerStyles}>
                     <nav>
                         <ul>
                             <li style={liStyles}><Link style={linkStyles} to='/'>Home</Link></li>
