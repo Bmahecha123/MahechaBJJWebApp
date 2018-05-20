@@ -2,7 +2,8 @@ import React from 'react';
 import { UserService } from '../../services/user.service';
 import { LOCALSTORAGE } from '../../resources/constants';
 import './login.css';
-import { colors, fontSizing, fontStyles } from '../../theme';
+import { colors, fontSizing, fontStyles, spacing } from '../../theme';
+import { Modal } from '../common/modal';
 
 const userService = new UserService();
 
@@ -14,10 +15,32 @@ const inputStyles = {
     boxShadow: colors.boxShadow
 };
 
+const pStyles = {
+    fontSize: fontSizing.medium,
+    padding: 0,
+    margin: 0,
+    marginBottom: spacing.small,
+    textAlign: 'center'
+};
+
+const buttonStyles = {
+    padding: spacing.xsmall,
+    margin: 0,
+    color: colors.primaryTextColor,
+    fontSize: fontSizing.medium,
+    boxShadow: colors.boxShadow,
+
+    alignSelf: 'center'
+};
+
 export default class Login extends React.Component {
 
     constructor(props) {
         super(props);
+
+        this.state = {
+            isOpen: false
+        };
     }
 
     async componentDidMount() {
@@ -30,8 +53,6 @@ export default class Login extends React.Component {
             } else {
                 this.props.onLogin(true, user);
             }
-        } else {
-            console.log('User is logged out!!!');
         }
     }
 
@@ -39,7 +60,7 @@ export default class Login extends React.Component {
         let userName = document.getElementById('userName').value;
         let passWord = document.getElementById('passWord').value;
         let loginBtn = document.getElementById('loginBtn');
-        
+
         loginBtn.disabled = true;
         //DISABLE BUTTON ON CLICK AND REENABLE AFTER REQUEST IS DONE!
         //ON SUCCESSFUL REQUEST SAVE SESSION IN LOCALSTORAGE
@@ -47,7 +68,9 @@ export default class Login extends React.Component {
         let user = await userService.login(userName, passWord);
 
         if (user.status) {
-            alert('Invalid username or password, please try again')
+            this.setState({
+                isOpen: true
+            });
             loginBtn.disabled = false;
         } else {
             localStorage.setItem(LOCALSTORAGE.userName, user.email);
@@ -59,9 +82,23 @@ export default class Login extends React.Component {
         }
     }
 
+    toggleModal = () => {
+        this.setState({
+            isOpen: false
+        });
+    }
+
     render() {
         console.log('user issssss ', this.props.loggedIn);
-        if (!this.props.loggedIn) {
+        if (this.state.isOpen) {
+            return (
+                <Modal isOpen={this.state.isOpen}>
+                    <p style={pStyles}>Invalid username or password, please try again</p>
+                    <button style={buttonStyles} onClick={this.toggleModal}>Ok</button>
+                </Modal>
+            );
+        }
+        else if (!this.props.loggedIn) {
             return (
                 <form>
                     <input id="userName" style={inputStyles} type="text" name="username" placeholder="Username" />

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { colors, fontSizing, fontStyles } from '../../theme';
+import { colors, fontSizing, fontStyles, spacing } from '../../theme';
 import Login from './login';
+import { Modal } from '../common/modal';
 import { LOCALSTORAGE } from '../../resources/constants';
 
 import './header.css';
@@ -9,13 +10,8 @@ import './header.css';
 //syles
 const liStyles = {
     boxShadow: colors.boxShadow,
-    fontWeight: fontStyles.bold,
-    color: colors.primaryTextColor
-};
-
-const ulStyles = {
-
-};
+    fontWeight: fontStyles.bold
+ };
 
 const linkStyles = {
     textDecoration: 'none',
@@ -23,12 +19,35 @@ const linkStyles = {
     fontSize: fontSizing.medium
 };
 
+const buttonStyles = {
+    ...linkStyles,
+    boxShadow: colors.boxShadow
+};
+
+const pStyles = {
+    fontSize: fontSizing.medium,
+    padding: 0,
+    margin: 0,
+    marginBottom: spacing.small,
+    textAlign: 'center'
+};
+
+const buttonLayout = {
+    padding: 0,
+    margin: 0,
+    
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around'
+};
+
 export default class Header extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            isLoggedIn: this.props.isLoggedIn
+            isLoggedIn: this.props.isLoggedIn,
+            isOpen: false
         };
     }
 
@@ -38,7 +57,6 @@ export default class Header extends React.Component {
                 isLoggedIn: isLoggedIn
             });
 
-            console.log('here is the user from the header component!!');
             console.dir(user);
         } else {
             this.setState({
@@ -55,8 +73,15 @@ export default class Header extends React.Component {
             console.log('User has not been removed from local storage.');
 
         this.setState({
-            isLoggedIn: false
+            isLoggedIn: false,
+            isOpen: false
         });
+    }
+
+    toggleModal = () => {
+        this.setState({
+            isOpen: !this.state.isOpen
+        })
     }
 
     render() {
@@ -64,21 +89,28 @@ export default class Header extends React.Component {
             return (
                 <header>
                     <nav>
-                        <ul style={ulStyles}>
+                        <ul>
                             <li style={liStyles}><Link style={linkStyles} to='/'>Home</Link></li>
                             <li style={liStyles}><Link style={linkStyles} to='/browse'>Browse</Link></li>
                             <li style={liStyles}><Link style={linkStyles} to='/about'>About</Link></li>
                             <li style={liStyles}><Link style={linkStyles} to='/blog'>Blog</Link></li>
-                            <li style={{...liStyles, ...linkStyles}} onClick={this.handleLogout}>Logout</li>
+                            <li style={{ ...liStyles, ...linkStyles }} onClick={this.toggleModal}>Logout</li>
                         </ul>
                     </nav>
+                    <Modal isOpen={this.state.isOpen}>
+                        <p style={pStyles}>Are you sure you want to log out?!</p>
+                        <div style={buttonLayout}>
+                            <button style={buttonStyles} onClick={this.handleLogout}>Yes</button>
+                            <button style={buttonStyles} onClick={this.toggleModal}>Close</button>
+                        </div>
+                    </Modal>
                 </header>
             );
         } else {
             return (
                 <header>
                     <nav>
-                        <ul style={ulStyles}>
+                        <ul>
                             <li style={liStyles}><Link style={linkStyles} to='/'>Home</Link></li>
                             <li style={liStyles}><Link style={linkStyles} to='/browse'>Browse</Link></li>
                             <li style={liStyles}><Link style={linkStyles} to='/about'>About</Link></li>

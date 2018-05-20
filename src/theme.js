@@ -18,6 +18,7 @@ const colors = {
 };
 
 const spacing = {
+    xsmall: ".5rem",
     small: "1rem", //16px
     medium: "2rem", //32px
     large: "4rem", //64px

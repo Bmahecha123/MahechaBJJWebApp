@@ -4,6 +4,8 @@ header {
 }
 
 ul {
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -17,11 +19,11 @@ li {
     padding: 5px;
 }
 
-li:active {
+li:active, button:active {
     background-color: rgba(53, 64, 134, 0.60);
 }
 
-li:hover {
+li:hover, button:hover {
     cursor: pointer;
 }
 
