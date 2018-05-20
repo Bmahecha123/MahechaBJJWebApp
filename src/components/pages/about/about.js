@@ -4,7 +4,14 @@ import './about.css';
 export default class About extends React.Component {
     render() {
         return (
-            <h1>About Page!</h1>
+            <section>
+                <h1>TO DO About Page</h1>
+                <ul>
+                    <li>Get basic layout figured out... Flex or Grid.</li>
+                    <li>Show basic info explaining the benefits of Mahecha BJJ.</li>
+                    
+                </ul>
+            </section>
         );
     }
 }
