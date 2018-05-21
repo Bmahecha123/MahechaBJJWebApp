@@ -14,15 +14,18 @@ const colors = {
     primaryTextColor: palette.black,
     backgroundColor: palette.white,
     buttonBackgroundColor: palette.blue,
-    boxShadow: "0 2px 14px 4px rgba(53, 64, 134, 0.60)",
+    buttonBoxShadow: "0 2px 14px 4px rgba(53, 64, 134, 0.60)",
+    cardButtonShadow: "0 2px 14px 4px rgba(53,174,134, 0.60)"
 };
 
 const spacing = {
-    xsmall: ".5rem",
+    xsmall: ".5rem", //8px
     small: "1rem", //16px
     medium: "2rem", //32px
     large: "4rem", //64px
-    xlarge: "6rem" //94px
+    xlarge: "6rem", //94px
+    xxlarge: "8rem",
+    xxxlarge: "10rem" 
 };
 
 const fontSizing = {

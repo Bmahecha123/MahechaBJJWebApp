@@ -15,9 +15,9 @@ const headerStyles = {
 
 const liStyles = {
     backgroundColor: colors.buttonBackgroundColor,
-    boxShadow: colors.boxShadow,
+    boxShadow: colors.buttonBoxShadow,
     fontWeight: fontStyles.bold
- };
+};
 
 const linkStyles = {
     textDecoration: 'none',
@@ -28,7 +28,7 @@ const linkStyles = {
 const buttonStyles = {
     ...linkStyles,
     backgroundColor: colors.buttonBackgroundColor,
-    boxShadow: colors.boxShadow
+    boxShadow: colors.buttonBoxShadow
 };
 
 const pStyles = {
@@ -39,13 +39,29 @@ const pStyles = {
     textAlign: 'center'
 };
 
-const buttonLayout = {
+const buttonLayoutStyles = {
     padding: 0,
     margin: 0,
-    
+
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around'
+};
+
+const imgStyles = {
+    maxWidth: spacing.xxxlarge
+};
+
+const h1Styles = {
+    padding: 0,
+    margin: 0,
+    fontWeight: fontStyles.bold,
+    fontSize: fontSizing.medium,
+    paddingBottom: spacing.xsmall
+};
+
+const flexItemStyles = {
+    alignSelf: 'center'
 };
 
 export default class Header extends React.Component {
@@ -104,9 +120,11 @@ export default class Header extends React.Component {
                             <li style={{ ...liStyles, ...linkStyles }} onClick={this.toggleModal}>Logout</li>
                         </ul>
                     </nav>
+                    <Link style={flexItemStyles} to='/'><img style={imgStyles} alt='mahecha logo' src={require('../../assets/mahechabjj.png')} /></Link>
+                    <h1 style={{ ...flexItemStyles, ...h1Styles }}>Technique Taught to the Point</h1>
                     <Modal isOpen={this.state.isOpen}>
                         <p style={pStyles}>Are you sure you want to log out?!</p>
-                        <div style={buttonLayout}>
+                        <div style={buttonLayoutStyles}>
                             <button style={buttonStyles} onClick={this.handleLogout}>Yes</button>
                             <button style={buttonStyles} onClick={this.toggleModal}>Close</button>
                         </div>
@@ -124,6 +142,8 @@ export default class Header extends React.Component {
                             <li style={liStyles}><Link style={linkStyles} to='/blog'>Blog</Link></li>
                         </ul>
                     </nav>
+                    <Link style={flexItemStyles} to='/'><img style={imgStyles} alt='mahecha logo' src={require('../../assets/mahechabjj.png')} /></Link>
+                    <h1 style={{ ...flexItemStyles, ...h1Styles }}>Technique Taught to the Point</h1>
                     <Login onLogin={this.handleLogin} loggedIn={this.state.isLoggedIn} />
                 </header>
             );

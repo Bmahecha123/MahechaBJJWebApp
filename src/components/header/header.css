@@ -19,10 +19,6 @@ li {
     padding: 5px;
 }
 
-li:active, button:active {
-    background-color: rgba(53, 64, 134, 0.60);
-}
-
 li:hover, button:hover {
     cursor: pointer;
 }

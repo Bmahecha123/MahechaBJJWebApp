@@ -12,7 +12,7 @@ const inputStyles = {
     color: colors.primaryTextColor,
     fontSize: fontSizing.small,
     fontWeight: fontStyles.normal,
-    boxShadow: colors.boxShadow
+    boxShadow: colors.buttonBoxShadow
 };
 
 const inputButtonStyles = {
@@ -25,7 +25,7 @@ const pStyles = {
     padding: 0,
     margin: 0,
     marginBottom: spacing.small,
-    textAlign: 'center'
+    textAlign: 'center',
 };
 
 const buttonStyles = {
@@ -34,7 +34,7 @@ const buttonStyles = {
     backgroundColor: colors.buttonBackgroundColor,
     color: colors.backgroundColor,
     fontSize: fontSizing.medium,
-    boxShadow: colors.boxShadow,
+    boxShadow: colors.buttonBoxShadow,
 
     alignSelf: 'center'
 };
