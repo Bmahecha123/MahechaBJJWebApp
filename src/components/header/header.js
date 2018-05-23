@@ -113,14 +113,13 @@ export default class Header extends React.Component {
                 <header style={headerStyles}>
                     <nav>
                         <ul>
-                            <li style={liStyles}><Link style={linkStyles} to='/'>Home</Link></li>
+                            <li><Link style={linkStyles} to='/'><img style={imgStyles} alt='mahecha logo' src={require('../../assets/mahechabjj.png')} /></Link></li>
                             <li style={liStyles}><Link style={linkStyles} to='/browse'>Browse</Link></li>
                             <li style={liStyles}><Link style={linkStyles} to='/about'>About</Link></li>
                             <li style={liStyles}><Link style={linkStyles} to='/blog'>Blog</Link></li>
                             <li style={{ ...liStyles, ...linkStyles }} onClick={this.toggleModal}>Logout</li>
                         </ul>
                     </nav>
-                    <Link style={flexItemStyles} to='/'><img style={imgStyles} alt='mahecha logo' src={require('../../assets/mahechabjj.png')} /></Link>
                     <h1 style={{ ...flexItemStyles, ...h1Styles }}>Technique Taught to the Point</h1>
                     <Modal isOpen={this.state.isOpen}>
                         <p style={pStyles}>Are you sure you want to log out?!</p>
@@ -136,13 +135,12 @@ export default class Header extends React.Component {
                 <header style={headerStyles}>
                     <nav>
                         <ul>
-                            <li style={liStyles}><Link style={linkStyles} to='/'>Home</Link></li>
+                            <li><Link style={linkStyles} to='/'><img style={imgStyles} alt='mahecha logo' src={require('../../assets/mahechabjj.png')} /></Link></li>
                             <li style={liStyles}><Link style={linkStyles} to='/browse'>Browse</Link></li>
                             <li style={liStyles}><Link style={linkStyles} to='/about'>About</Link></li>
                             <li style={liStyles}><Link style={linkStyles} to='/blog'>Blog</Link></li>
                         </ul>
                     </nav>
-                    <Link style={flexItemStyles} to='/'><img style={imgStyles} alt='mahecha logo' src={require('../../assets/mahechabjj.png')} /></Link>
                     <h1 style={{ ...flexItemStyles, ...h1Styles }}>Technique Taught to the Point</h1>
                     <Login onLogin={this.handleLogin} loggedIn={this.state.isLoggedIn} />
                 </header>
