@@ -1,8 +1,12 @@
 const palette = {
-    white: "#f9fafd",
+    white: "#F1ECCE",
+    azure: "#F2FDFF",
     black: "#070d18",
     blue: "#355dae",
-    red: "#7c2529"
+    red: "#7c2529",
+    olive: "#ae4a35",
+    bronze: "#ae4a35",
+    brown: "#ae8635"
 };
 
 const fontStyles = {
@@ -12,10 +16,14 @@ const fontStyles = {
 
 const colors = {
     primaryTextColor: palette.black,
-    backgroundColor: palette.white,
+    mainBackgroundColor: palette.white,
     buttonBackgroundColor: palette.blue,
+    inputBackgroundColor: palette.azure,
+    headerBackgroundColor: palette.olive,
+    footerBackgroundColor: palette.brown,
+    cardBackgroundColor: palette.azure,
     buttonBoxShadow: "0 2px 14px 4px rgba(53, 64, 134, 0.60)",
-    cardButtonShadow: "0 2px 14px 4px rgba(53,174,134, 0.60)"
+    cardBoxShadow: "0 2px 14px 4px rgba(53,174,134, 0.60)"
 };
 
 const spacing = {

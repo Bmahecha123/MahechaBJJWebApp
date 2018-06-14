@@ -10,7 +10,7 @@ export class UserService {
                 },
                 mode: 'cors'
             });
-
+            
             if (request.status !== 200) {
                 // eslint-disable-next-line
                 throw {status: request.status};

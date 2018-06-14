@@ -14,7 +14,7 @@ const modalStyles = {
 
 //modal
 const modalContentStyles = {
-    backgroundColor: colors.backgroundColor,
+    backgroundColor: colors.mainBackgroundColor,
     borderRadius: 5,
     maxWidth: 500,
     minHeight: spacing.xlarge,

@@ -10,7 +10,9 @@ import './header.css';
 //syles
 const headerStyles = {
     marginTop: spacing.xsmall,
-    marginBottom: spacing.xsmall
+    marginBottom: spacing.xsmall,
+    backgroundColor: colors.headerBackgroundColor,
+    margin: 0
 };
 
 const liStyles = {
@@ -21,7 +23,7 @@ const liStyles = {
 
 const linkStyles = {
     textDecoration: 'none',
-    color: colors.backgroundColor,
+    color: colors.mainBackgroundColor,
     fontSize: fontSizing.medium
 };
 
@@ -52,18 +54,6 @@ const imgStyles = {
     maxWidth: spacing.xxxlarge
 };
 
-const h1Styles = {
-    padding: 0,
-    margin: 0,
-    fontWeight: fontStyles.bold,
-    fontSize: fontSizing.medium,
-    paddingBottom: spacing.xsmall
-};
-
-const flexItemStyles = {
-    alignSelf: 'center'
-};
-
 export default class Header extends React.Component {
     constructor(props) {
         super(props);
@@ -75,6 +65,7 @@ export default class Header extends React.Component {
     }
 
     handleLogin = (isLoggedIn, user) => {
+        
         if (isLoggedIn) {
             this.setState({
                 isLoggedIn: isLoggedIn
@@ -120,7 +111,6 @@ export default class Header extends React.Component {
                             <li style={{ ...liStyles, ...linkStyles }} onClick={this.toggleModal}>Logout</li>
                         </ul>
                     </nav>
-                    <h1 style={{ ...flexItemStyles, ...h1Styles }}>Technique Taught to the Point</h1>
                     <Modal isOpen={this.state.isOpen}>
                         <p style={pStyles}>Are you sure you want to log out?!</p>
                         <div style={buttonLayoutStyles}>
@@ -141,7 +131,6 @@ export default class Header extends React.Component {
                             <li style={liStyles}><Link style={linkStyles} to='/blog'>Blog</Link></li>
                         </ul>
                     </nav>
-                    <h1 style={{ ...flexItemStyles, ...h1Styles }}>Technique Taught to the Point</h1>
                     <Login onLogin={this.handleLogin} loggedIn={this.state.isLoggedIn} />
                 </header>
             );
