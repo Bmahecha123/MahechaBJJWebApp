@@ -7,6 +7,7 @@ import Blog from '../pages/blog/blog';
 import About from '../pages/about/about';
 import Technique from '../pages/technique/technique';
 import Post from '../pages/post/post';
+import { colors } from '../../theme';
 
 const Main = () => (
     <main>

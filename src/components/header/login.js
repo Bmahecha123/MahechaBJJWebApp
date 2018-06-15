@@ -22,7 +22,7 @@ const inputStyles = {
 
 const inputButtonStyles = {
     backgroundColor: colors.buttonBackgroundColor,
-    color: colors.mainBackgroundColor
+    color: colors.buttonTextColor
 };
 
 const pStyles = {
@@ -63,9 +63,9 @@ export default class Login extends React.Component {
                     isOpen: true,
                     modalMessage: 'Unexpected error occurred, please try to login again!'
                 });
-                this.props.onLogin(false, null);
+                this.props.onLogin(false);
             } else {
-                this.props.onLogin(true, user);
+                this.props.onLogin(true);
             }
         }
     }
@@ -104,7 +104,7 @@ export default class Login extends React.Component {
                 console.log('User saved to local storage.') :
                 console.log('User has not been saved to local storage.');
 
-            this.props.onLogin(true, user);
+            this.props.onLogin(true);
         }
     }
 

@@ -16,6 +16,7 @@ const fontStyles = {
 
 const colors = {
     primaryTextColor: palette.black,
+    buttonTextColor: palette.azure,
     mainBackgroundColor: palette.white,
     buttonBackgroundColor: palette.blue,
     inputBackgroundColor: palette.azure,

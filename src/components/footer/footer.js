@@ -8,16 +8,21 @@ const footerStyles = {
     backgroundColor: colors.footerBackgroundColor,
     margin: 0,
     height: 200,
-    width: '100%'
+    
 };
 
 export default class Footer extends React.Component {
 
     render() {
-        return (
-            <footer style={footerStyles}>
-                
-            </footer>
-        );
+        if (!this.props.isLoggedIn) {
+            return (
+                <footer style={footerStyles}>
+                    
+                </footer>
+            );
+        } else {
+            return null;
+        }
+        
     }
 }

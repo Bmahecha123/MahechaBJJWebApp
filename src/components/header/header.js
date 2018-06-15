@@ -23,7 +23,7 @@ const liStyles = {
 
 const linkStyles = {
     textDecoration: 'none',
-    color: colors.mainBackgroundColor,
+    color: colors.buttonTextColor,
     fontSize: fontSizing.medium
 };
 
@@ -64,19 +64,12 @@ export default class Header extends React.Component {
         };
     }
 
-    handleLogin = (isLoggedIn, user) => {
-        
-        if (isLoggedIn) {
-            this.setState({
-                isLoggedIn: isLoggedIn
-            });
-
-            console.dir(user);
-        } else {
-            this.setState({
-                isLoggedIn: isLoggedIn
-            });
-        }
+    handleLogin = (isLoggedIn) => {
+        this.setState({
+            isLoggedIn: isLoggedIn,
+            isOpen: false
+        });
+        this.props.onLogin(isLoggedIn);
     }
 
     handleLogout = () => {
@@ -90,6 +83,8 @@ export default class Header extends React.Component {
             isLoggedIn: false,
             isOpen: false
         });
+
+        this.props.onLogout();
     }
 
     toggleModal = () => {
@@ -99,6 +94,7 @@ export default class Header extends React.Component {
     }
 
     render() {
+        console.log('HEADER LOGIN STTE!!', this.state.isLoggedIn);
         if (this.state.isLoggedIn) {
             return (
                 <header style={headerStyles}>
