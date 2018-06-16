@@ -31,7 +31,7 @@ export default class App extends React.Component {
     render() {
         console.log('APP LOGIN STATE', this.state.isLoggedIn);
         return (
-            <div style={{backgroundColor: colors.mainBackgroundColor}}>
+            <div>
                 <Header onLogin={this.handleLogin} onLogout={this.handleLogout} isLoggedIn={this.state.isLoggedIn} />
                 <Main isLoggedIn={this.state.isLoggedIn} />
                 <Footer isLoggedIn={this.state.isLoggedIn} />

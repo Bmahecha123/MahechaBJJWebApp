@@ -11,7 +11,7 @@ const palette = {
 
 const fontStyles = {
     normal: "400",
-    bold: "700"
+    bold: "900"
 };
 
 const colors = {

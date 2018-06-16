@@ -10,7 +10,7 @@ import Post from '../pages/post/post';
 import { colors } from '../../theme';
 
 const Main = () => (
-    <main>
+    <main style={{backgroundColor: colors.mainBackgroundColor}}>
         <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/browse' component={BrowseSwitch} />
