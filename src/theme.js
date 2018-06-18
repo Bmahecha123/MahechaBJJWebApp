@@ -44,4 +44,10 @@ const fontSizing = {
     xlarge: "4rem"
 };
 
-export { colors, spacing, fontSizing, fontStyles };
+const containerSizing = {
+    small: "",
+    medium: "25rem",
+    large: "50rem"
+};
+
+export { colors, spacing, fontSizing, fontStyles, containerSizing };

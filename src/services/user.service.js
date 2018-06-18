@@ -3,7 +3,7 @@ import { BASEURL, ENDPOINTS } from '../resources/constants';
 export class UserService {
     login = async (email, password) => {
         try {
-            let request = await fetch(`${BASEURL}${ENDPOINTS.login}`, {
+            const request = await fetch(`${BASEURL}${ENDPOINTS.login}`, {
                 headers: {
                     'X-EMAIL': email,
                     'X-Password': password
@@ -16,7 +16,7 @@ export class UserService {
                 throw {status: request.status};
             }
     
-            let json = await request.json();
+            const json = await request.json();
             return json;
         }
         catch (exception) {
@@ -26,7 +26,7 @@ export class UserService {
 
     getUser = async (email) => {
         try {
-            let request = await fetch(`${BASEURL}${ENDPOINTS.findUserByEmail}`, {
+            const request = await fetch(`${BASEURL}${ENDPOINTS.findUserByEmail}`, {
                 headers: {
                     'X-EMAIL': email
                 },
@@ -38,7 +38,7 @@ export class UserService {
                 throw {status: request.status};
             }
     
-            let json = await request.json();
+            const json = await request.json();
             return json;
         }
         catch (exception) {
@@ -48,7 +48,7 @@ export class UserService {
 
     getUserById = async (id) => {
         try {
-            let request = await fetch(`${BASEURL}${ENDPOINTS.findUserById}`, {
+            const request = await fetch(`${BASEURL}${ENDPOINTS.findUserById}`, {
                 headers: {
                     'X-Id': id
                 },
@@ -60,7 +60,7 @@ export class UserService {
                 throw 'Unable to fetch user.';
             }
     
-            let json = await request.json();
+            const json = await request.json();
             return json;
         }
         catch (exception) {
@@ -70,7 +70,7 @@ export class UserService {
 
     getAllPlaylists = async (id) => {
         try {
-            let request = await fetch(`${BASEURL}${ENDPOINTS.getPlaylists}${id}`, {
+            const request = await fetch(`${BASEURL}${ENDPOINTS.getPlaylists}${id}`, {
                 mode: 'cors'
             });
             
@@ -79,7 +79,7 @@ export class UserService {
                 throw 'Unable to fetch Playlists.';
             }
 
-            let json = await request.json();
+            const json = await request.json();
             return json;
         }
         catch (exception) {
@@ -89,7 +89,7 @@ export class UserService {
 
     getPlaylist = async (id, playlistName) => {
         try {
-            let request = await fetch(`${BASEURL}${ENDPOINTS.getPlaylist}${id}`, {
+            const request = await fetch(`${BASEURL}${ENDPOINTS.getPlaylist}${id}`, {
                 headers: {
                     'X-playlistName': playlistName
                 },
@@ -101,7 +101,7 @@ export class UserService {
                 throw 'Unable to get Playlist.';
             }
 
-            let json = await request.json();
+            const json = await request.json();
             return json;
         }
         catch (exception) {
@@ -111,7 +111,7 @@ export class UserService {
 
     addPlaylist = async (id, body) => {
         try {
-            let request = await fetch(`${BASEURL}${ENDPOINTS.addPlaylist}${id}`, {
+            const request = await fetch(`${BASEURL}${ENDPOINTS.addPlaylist}${id}`, {
                 method: 'PUT',
                 body: JSON.stringify(body),
                 mode: 'cors'
@@ -126,7 +126,7 @@ export class UserService {
 
     updatePlaylist = async (id, playlist) => {
         try {
-            let request = await fetch(`${BASEURL}${ENDPOINTS.updatePlaylist}${id}`, {
+            const request = await fetch(`${BASEURL}${ENDPOINTS.updatePlaylist}${id}`, {
                 method: 'POST',
                 body: JSON.stringify(playlist),
                 mode: 'cors'
@@ -141,7 +141,7 @@ export class UserService {
 
     deletePlaylist = async (id, playlist) => {
         try {
-            let request = await fetch(`${BASEURL}${ENDPOINTS.deletePlaylist}${id}`, {
+            const request = await fetch(`${BASEURL}${ENDPOINTS.deletePlaylist}${id}`, {
                 method: 'POST',
                 body: JSON.stringify(playlist),
                 mode: 'cors'
@@ -156,7 +156,7 @@ export class UserService {
 
     deleteVideoFromPlaylist = async (videoName, id, playlist) => {
         try {
-            let request = await fetch(`${BASEURL}${ENDPOINTS.deleteVideo}${id}`, {
+            const request = await fetch(`${BASEURL}${ENDPOINTS.deleteVideo}${id}`, {
                 headers: {
                     'X-videoName': videoName
                 },
@@ -174,7 +174,7 @@ export class UserService {
 
     changePassword = async (id, answer, password) => {
         try {
-            let request = await fetch(`${BASEURL}${ENDPOINTS.changePassword}`, {
+            const request = await fetch(`${BASEURL}${ENDPOINTS.changePassword}`, {
                 headers: {
                     'X-ID': id,
                     'X-ANSWER': answer,
