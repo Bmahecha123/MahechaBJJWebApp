@@ -19,7 +19,8 @@ const ENDPOINTS = {
     },
     getNoGiTechniques: (count) => {
         return `https://api.vimeo.com/me/albums/4802539/videos?access_token=5d3d5a50aae149bd4765bbddf7d94952&version=3.2&per_page=${count}`;
-    }
+    },
+    getAllBlogPosts: 'https://api.tumblr.com/v2/blog/mahechabjj/posts?api_key=vPbcUP6WSBbQ6RiVQC5ZO9paNGQE7QT4kXGefQXKlkM2jBJdos'
 };
 
 const LOCALSTORAGE = {

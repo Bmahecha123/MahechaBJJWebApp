@@ -1,8 +1,9 @@
+import { ENDPOINTS } from "../resources/constants";
 
 export class VimeoService {
-    getVimeoVideos = async (endpoint) => {
+    getVimeoVideos = async (count) => {
         try {
-            const request = await fetch(endpoint);
+            const request = await fetch(ENDPOINTS.getFullAccessTechniques(count));
             
             if (request.status !== 200) {
                 // eslint-disable-next-line
@@ -11,7 +12,8 @@ export class VimeoService {
     
             const json = await request.json();
             return json;
-        } catch (exception) {
+        } 
+        catch (exception) {
             return exception;
         }
     };

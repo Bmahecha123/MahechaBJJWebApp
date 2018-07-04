@@ -95,41 +95,26 @@ export default class Header extends React.Component {
 
     render() {
         console.log('HEADER LOGIN STTE!!', this.state.isLoggedIn);
-        if (this.state.isLoggedIn) {
-            return (
-                <header style={headerStyles}>
-                    <nav>
-                        <ul>
-                            <li><Link style={linkStyles} to='/'><img style={imgStyles} alt='mahecha logo' src={require('../../assets/mahechabjj.png')} /></Link></li>
-                            <li style={liStyles}><Link style={linkStyles} to='/browse'>Browse</Link></li>
-                            <li style={liStyles}><Link style={linkStyles} to='/about'>About</Link></li>
-                            <li style={liStyles}><Link style={linkStyles} to='/blog'>Blog</Link></li>
-                            <li style={{ ...liStyles, ...linkStyles }} onClick={this.toggleModal}>Logout</li>
-                        </ul>
-                    </nav>
-                    <Modal isOpen={this.state.isOpen}>
-                        <p style={pStyles}>Are you sure you want to log out?!</p>
-                        <div style={buttonLayoutStyles}>
-                            <button style={buttonStyles} onClick={this.handleLogout}>Yes</button>
-                            <button style={buttonStyles} onClick={this.toggleModal}>Close</button>
-                        </div>
-                    </Modal>
-                </header>
-            );
-        } else {
-            return (
-                <header style={headerStyles}>
-                    <nav>
-                        <ul>
-                            <li><Link style={linkStyles} to='/'><img style={imgStyles} alt='mahecha logo' src={require('../../assets/mahechabjj.png')} /></Link></li>
-                            <li style={liStyles}><Link style={linkStyles} to='/browse'>Browse</Link></li>
-                            <li style={liStyles}><Link style={linkStyles} to='/about'>About</Link></li>
-                            <li style={liStyles}><Link style={linkStyles} to='/blog'>Blog</Link></li>
-                        </ul>
-                    </nav>
-                    <Login onLogin={this.handleLogin} loggedIn={this.state.isLoggedIn} />
-                </header>
-            );
-        }
+        return (
+            <header style={headerStyles}>
+                <nav>
+                    <ul>
+                        <li><Link style={linkStyles} to='/'><img style={imgStyles} alt='mahecha logo' src={require('../../assets/mahechabjj.png')} /></Link></li>
+                        <li style={liStyles}><Link style={linkStyles} to='/browse'>Browse</Link></li>
+                        <li style={liStyles}><Link style={linkStyles} to='/about'>About</Link></li>
+                        <li style={liStyles}><Link style={linkStyles} to='/blog'>Blog</Link></li>
+                        {this.state.isLoggedIn && <li style={{ ...liStyles, ...linkStyles }} onClick={this.toggleModal}>Logout</li>}
+                    </ul>
+                </nav>
+                {!this.state.isLoggedIn && <Login onLogin={this.handleLogin} loggedIn={this.state.isLoggedIn} />}
+                <Modal isOpen={this.state.isOpen}>
+                    <p style={pStyles}>Are you sure you want to log out?!</p>
+                    <div style={buttonLayoutStyles}>
+                        <button style={buttonStyles} onClick={this.handleLogout}>Yes</button>
+                        <button style={buttonStyles} onClick={this.toggleModal}>Close</button>
+                    </div>
+                </Modal>
+            </header>
+        );
     }
 }

@@ -34,7 +34,7 @@ const spacing = {
     large: "4rem", //64px
     xlarge: "6rem", //94px
     xxlarge: "8rem",
-    xxxlarge: "10rem" 
+    xxxlarge: "10rem"
 };
 
 const fontSizing = {
@@ -50,4 +50,28 @@ const containerSizing = {
     large: "50rem"
 };
 
-export { colors, spacing, fontSizing, fontStyles, containerSizing };
+const cardStyles = (maxWidth) => {
+    return {
+        maxWidth: maxWidth,
+        boxShadow: colors.cardBoxShadow,
+        margin: 0,
+        borderRadius: 7,
+        backgroundColor: colors.cardBackgroundColor,
+        objectFit: 'cover'
+    };
+};
+
+const cardTitleStyles = (fontSize) => {
+    return {
+        fontSize: fontSize,
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+        paddingTop: spacing.small,
+        margin: 0,
+        fontWeight: fontStyles.bold,
+        textAlign: 'center'
+    };
+};
+
+export { colors, spacing, fontSizing, fontStyles, containerSizing, cardStyles, cardTitleStyles };

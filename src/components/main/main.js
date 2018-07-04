@@ -9,10 +9,10 @@ import Technique from '../pages/technique/technique';
 import Post from '../pages/post/post';
 import { colors } from '../../theme';
 
-const Main = () => (
+const Main = (props) => (
     <main style={{backgroundColor: colors.mainBackgroundColor}}>
         <Switch>
-            <Route exact path='/' component={Home} />
+            <Route exact path='/' render={() => <Home isLoggedIn={props.isLoggedIn} /> } />
             <Route path='/browse' component={BrowseSwitch} />
             <Route path='/blog' component={BlogSwitch} />
             <Route exact path='/about' component={About} />
