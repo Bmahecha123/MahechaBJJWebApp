@@ -6,9 +6,7 @@ import Main from './components/main/main';
 import Footer from './components/footer/footer';
 
 const appStyles = {
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100vh'
+    display: 'grid'
 };
 
 export default class App extends React.Component {

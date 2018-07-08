@@ -1,9 +1,10 @@
 import React from 'react';
-import { fontStyles, fontSizing, spacing, cardStyles, containerSizing, cardTitleStyles } from '../../../theme';
+import { fontStyles, fontSizing, spacing, cardStyles, containerSizing, cardTitleStyles, colors } from '../../../theme';
 import { ENDPOINTS } from '../../../resources/constants';
 import { VimeoService } from '../../../services/vimeoService';
 import { Video } from '../../common/video';
 import { BlogService } from '../../../services/blog.service';
+import { Modal } from '../../common/modal';
 
 const sectionStyles = {
     display: 'flex',
@@ -36,6 +37,28 @@ const h2Styles = {
     ...hStyles
 };
 
+const linkStyles = {
+    textDecoration: 'none',
+    color: colors.buttonTextColor,
+    fontSize: fontSizing.medium
+};
+
+const buttonStyles = {
+    ...linkStyles,
+    backgroundColor: colors.buttonBackgroundColor,
+    boxShadow: colors.buttonBoxShadow,
+
+    alignSelf: 'center'
+};
+
+const pStyles = {
+    fontSize: fontSizing.medium,
+    padding: 0,
+    margin: 0,
+    marginBottom: spacing.small,
+    textAlign: 'center',
+};
+
 const vimeoService = new VimeoService();
 const blogService = new BlogService();
 
@@ -45,7 +68,8 @@ export default class Home extends React.Component {
         this.state = {
             techniques: [],
             blogPosts: {},
-            blogImage: ""
+            blogImage: "",
+            showError: false
         };
     }
 
@@ -79,14 +103,26 @@ export default class Home extends React.Component {
         }
     }
 
+    toggleError = () => {
+        if (!this.props.isLoggedIn) {
+            this.setState({
+                showError: !this.state.showError
+            });
+        }
+    };
+
     render() {
         return (
             <section style={sectionStyles}>
                 <h1 style={{ ...h1Styles, marginBottom: 0 }}>Mahecha BJJ</h1>
                 <h2 style={{ ...h2Styles, marginTop: 0 }}>Technique Taught to the Point</h2>
                 <h2 style={{ ...h2Styles, marginBottom: 0 }}>What's New</h2>
-                <div style={divStyles}>
+                <div style={divStyles} onClick={!this.state.showError ? this.toggleError : null}>
                     {this.state.techniques.map(technique => <Video key={technique.name} technique={technique} loggedIn={this.props.isLoggedIn} />)}
+                    <Modal isOpen={this.state.showError}>
+                        <p style={pStyles}>Login in Order to View Content!</p>
+                        <button style={buttonStyles} onClick={this.toggleError}>Ok</button>
+                    </Modal>
                 </div>
                 <h2 style={{ ...h2Styles, marginBottom: spacing.medium }}>Recent Blog Posts</h2>
                 <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>

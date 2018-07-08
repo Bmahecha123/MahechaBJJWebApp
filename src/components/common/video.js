@@ -8,7 +8,6 @@ const containerStyles = {
 };
 
 export const Video = (props) => {
-    console.log('PROPS!!!', props);
     return (
         <div key={props.technique.name} style={containerStyles}>
             <video style={{ ...cardStyles(containerSizing.medium), pointerEvents: !props.loggedIn ? 'none' : '' }} src={props.technique.files[1].link} controls controlsList="nodownload">
