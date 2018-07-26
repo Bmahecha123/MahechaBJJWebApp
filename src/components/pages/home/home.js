@@ -112,6 +112,8 @@ export default class Home extends React.Component {
     };
 
     render() {
+        console.log('TECHNIQUES');
+        console.log(this.state.techniques);
         return (
             <section style={sectionStyles}>
                 <h1 style={{ ...h1Styles, marginBottom: 0 }}>Mahecha BJJ</h1>

@@ -6,7 +6,8 @@ import Main from './components/main/main';
 import Footer from './components/footer/footer';
 
 const appStyles = {
-    display: 'grid'
+    display: 'grid',
+    gridTemplateRows: 'min-content auto min-content'
 };
 
 export default class App extends React.Component {
