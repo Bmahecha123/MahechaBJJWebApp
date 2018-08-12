@@ -75,7 +75,7 @@ export default class Blog extends React.Component {
                                 }
                             }}
                         >
-                            <img style={{ ...cardStyles(containerSizing.medium), objectFit: 'cover', maxWidth: containerSizing.medium, maxHeight: '100%' }} alt="blog photo" src={blogPost.photos[0].original_size.url} />
+                            <img style={{ ...cardStyles(containerSizing.medium), objectFit: 'cover', maxWidth: containerSizing.medium, maxHeight: '100%' }} alt="blog" src={blogPost.photos[0].original_size.url} />
                             <h2 style={{ ...h2Styles, ...cardTitleStyles(fontSizing.medium), marginBottom: spacing.medium, maxWidth: containerSizing.medium }}>{blogPost.summary}</h2>
                         </Link>
                     );

@@ -6,6 +6,7 @@ export class BlogService {
             const request = await fetch(ENDPOINTS.getAllBlogPosts);
 
             if (request.status !== 200) {
+                // eslint-disable-next-line
                 throw { status: request.status };
             }
 
@@ -20,8 +21,9 @@ export class BlogService {
     getAllBlogPosts = async () => {
         try {
             const request = await fetch(ENDPOINTS.getAllBlogPosts);
-
+            
             if (request.status !== 200) {
+                // eslint-disable-next-line
                 throw { status: request.status };
             }
 

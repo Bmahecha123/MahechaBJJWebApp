@@ -4,7 +4,6 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import Home from '../pages/home/home';
 import Browse from '../pages/browse/browse';
 import Blog from '../pages/blog/blog';
-import About from '../pages/about/about';
 import Technique from '../pages/technique/technique';
 import { colors } from '../../theme';
 import { BlogDetail } from '../common/blog-detail';
