@@ -15,7 +15,6 @@ const Main = (props) => (
             <Route exact path='/' render={() => <Home isLoggedIn={props.isLoggedIn} /> } />
             <Route path='/browse' component={BrowseSwitch} />
             <Route path='/blog' component={BlogSwitch} />
-            <Route exact path='/about' component={About} />
             <Redirect from='*' to='/' />
         </Switch>
     </main>
