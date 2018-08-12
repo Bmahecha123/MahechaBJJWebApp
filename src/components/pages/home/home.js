@@ -1,6 +1,5 @@
 import React from 'react';
 import { fontStyles, fontSizing, spacing, cardStyles, containerSizing, cardTitleStyles, colors } from '../../../theme';
-import { ENDPOINTS } from '../../../resources/constants';
 import { VimeoService } from '../../../services/vimeoService';
 import { Video } from '../../common/video';
 import { BlogService } from '../../../services/blog.service';
@@ -94,7 +93,7 @@ export default class Home extends React.Component {
 
     async loadBlogPosts() {
         try {
-            const request = await blogService.getBlogPosts();
+            const request = await blogService.getMostRecentBlogPosts();
             console.log('REQUESTTTT');
             console.log(request);
             this.setState({
@@ -115,10 +114,6 @@ export default class Home extends React.Component {
     };
 
     render() {
-        console.log('TECHNIQUES');
-        console.log(this.state.techniques);
-        console.log('BLOG!!');
-        console.log(this.state.blogPosts);
         return (
             <section style={sectionStyles}>
                 <h1 style={{ ...h1Styles, marginBottom: 0 }}>Mahecha BJJ</h1>
@@ -133,15 +128,13 @@ export default class Home extends React.Component {
                 </div>
                 <h2 style={{ ...h2Styles, marginBottom: spacing.medium }}>Recent Blog Posts</h2>
 
-                <Link style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', textDecoration: 'none', color: colors }}
+                <Link style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', textDecoration: 'none' }}
                     to={{
                         pathname: `/blog/${this.state.blogPosts.slug}`,
                         state: {
                             post: this.state.blogPosts
                         }
                     }}
-                    // to={`/blog/${this.state.blogPosts.slug}`}
-                    // state={{ post: this.state.blogPosts }}
                     >
                     <img style={{ ...cardStyles(containerSizing.medium), objectFit: 'cover', maxWidth: containerSizing.medium, maxHeight: '100%' }} alt="blog photo" src={this.state.blogImage} />
                     <h2 style={{ ...h2Styles, ...cardTitleStyles(fontSizing.medium), marginBottom: spacing.medium, maxWidth: containerSizing.medium }}>{this.state.blogPosts.summary}</h2>
