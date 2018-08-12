@@ -1,13 +1,13 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 //Components
 import Home from '../pages/home/home';
 import Browse from '../pages/browse/browse';
 import Blog from '../pages/blog/blog';
 import About from '../pages/about/about';
 import Technique from '../pages/technique/technique';
-import Post from '../pages/post/post';
 import { colors } from '../../theme';
+import { BlogDetail } from '../common/blog-detail';
 
 const Main = (props) => (
     <main style={{backgroundColor: colors.mainBackgroundColor}}>
@@ -16,6 +16,7 @@ const Main = (props) => (
             <Route path='/browse' component={BrowseSwitch} />
             <Route path='/blog' component={BlogSwitch} />
             <Route exact path='/about' component={About} />
+            <Redirect from='*' to='/' />
         </Switch>
     </main>
 );
@@ -33,7 +34,7 @@ const BlogSwitch = () => (
     <section>
         <Switch>
             <Route exact path='/blog' component={Blog} />
-            <Route path='/blog/:post' component={Post} />
+            <Route path='/blog/:post' component={BlogDetail} />
         </Switch>
     </section>
 );
