@@ -9,7 +9,8 @@ const modalStyles = {
     left: 0,
     right: 0,
     backgroundColor: 'rgba(53, 64, 134, 0.60)',
-    paddingTop: 100
+    paddingTop: 100,
+    zIndex: 1
 };
 
 //modal

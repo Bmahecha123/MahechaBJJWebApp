@@ -1,7 +1,7 @@
 import React from 'react';
 
 const sectionStyles = {
-    display: 'grid'
+    display: 'flex'
 };
 
 export default class Browse extends React.Component {

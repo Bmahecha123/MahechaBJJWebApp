@@ -1,16 +1,16 @@
 import React from 'react';
-import { containerSizing, fontSizing, spacing, cardStyles, cardTitleStyles } from '../../theme';
+import { fontSizing, cardStyles, cardTitleStyles } from '../../theme';
 
 const containerStyles = {
-    maxWidth: containerSizing.medium,
+    display: 'flex',
+    flexDirection: 'column',
     padding: 0,
-    margin: spacing.medium
 };
 
 export const Video = (props) => {
     return (
-        <div key={props.technique.name} style={containerStyles}>
-            <video style={{ ...cardStyles(containerSizing.medium), pointerEvents: !props.loggedIn ? 'none' : '' }} src={props.technique.files[1].link} controls controlsList="nodownload">
+        <div key={props.technique.name} style={{...containerStyles, maxWidth: props.maxWidth}}>
+            <video style={{ ...cardStyles('100%'), pointerEvents: !props.loggedIn ? 'none' : ''}} src={props.technique.files[1].link} controls controlsList="nodownload">
             </video>
             <h2 style={cardTitleStyles(fontSizing.medium)}>{props.technique.name}</h2>
         </div>

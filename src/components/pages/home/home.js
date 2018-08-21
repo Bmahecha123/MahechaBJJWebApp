@@ -15,10 +15,19 @@ const sectionStyles = {
 
 const divStyles = {
     display: 'flex',
-    flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
     flexWrap: 'wrap',
+};
+
+const divStylesRow = {
+    ...divStyles,
+    flexDirection: 'row'
+};
+
+const divStylesColumn = {
+    ...divStyles,
+    flexDirection: 'column'
 };
 
 const hStyles = {
@@ -70,8 +79,7 @@ export default class Home extends React.Component {
         this.state = {
             techniques: [],
             blogPosts: {},
-            blogImage: "",
-            showError: false
+            blogImage: ""
         };
     }
 
@@ -105,26 +113,37 @@ export default class Home extends React.Component {
         }
     }
 
-    toggleError = () => {
-        if (!this.props.isLoggedIn) {
-            this.setState({
-                showError: !this.state.showError
-            });
-        }
-    };
+    generateSlug = text => {
+        return text.replace(' ', '_');
+    }
 
     render() {
+        console.log('STATE');
+        console.dir(this.state);
         return (
             <section style={sectionStyles}>
                 <h1 style={{ ...h1Styles, marginBottom: 0 }}>Mahecha BJJ</h1>
                 <h2 style={{ ...h2Styles, marginTop: 0 }}>Technique Taught to the Point</h2>
                 <h2 style={{ ...h2Styles, marginBottom: 0 }}>What's New</h2>
-                <div style={divStyles} onClick={!this.state.showError ? this.toggleError : null}>
-                    {this.state.techniques.map(technique => <Video key={technique.name} technique={technique} loggedIn={this.props.isLoggedIn} />)}
-                    <Modal isOpen={this.state.showError}>
-                        <p style={pStyles}>Login in Order to View Content!</p>
-                        <button style={buttonStyles} onClick={this.toggleError}>Ok</button>
-                    </Modal>
+                <div style={divStylesRow}>
+                    {this.state.techniques.map(technique => {
+                        // <Video key={technique.name} technique={technique} loggedIn={this.props.isLoggedIn} />
+                        {/* Implement similar configuration as blog post image for video! */ }
+                        return (
+                            <Link key={this.generateSlug(technique.name)} style={{ ...divStylesColumn, padding: 0, margin: spacing.medium, textDecoration: 'none' }}
+                                to={{
+                                    pathname: `/browse/${this.generateSlug(technique.name)}`,
+                                    state: {
+                                        //loggedIn: this.props.isLoggedIn,
+                                        technique: technique
+                                    }
+                                }}
+                                replace={true}>
+                                <img style={{ ...cardStyles(containerSizing.medium), objectFit: 'cover', maxWidth: containerSizing.medium, maxHeight: '100%' }} alt="blog" src={technique.pictures.sizes[4].link} />
+                                <h2 style={{ ...h2Styles, ...cardTitleStyles(fontSizing.medium), marginBottom: spacing.medium, maxWidth: containerSizing.medium }}>{technique.name}</h2>
+                            </Link>
+                        );
+                    })}
                 </div>
                 <h2 style={{ ...h2Styles, marginBottom: spacing.medium }}>Recent Blog Posts</h2>
 
@@ -135,7 +154,7 @@ export default class Home extends React.Component {
                             post: this.state.blogPosts
                         }
                     }}
-                    >
+                >
                     <img style={{ ...cardStyles(containerSizing.medium), objectFit: 'cover', maxWidth: containerSizing.medium, maxHeight: '100%' }} alt="blog" src={this.state.blogImage} />
                     <h2 style={{ ...h2Styles, ...cardTitleStyles(fontSizing.medium), marginBottom: spacing.medium, maxWidth: containerSizing.medium }}>{this.state.blogPosts.summary}</h2>
                 </Link>

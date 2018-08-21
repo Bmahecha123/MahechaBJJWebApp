@@ -4,26 +4,46 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import Home from '../pages/home/home';
 import Browse from '../pages/browse/browse';
 import Blog from '../pages/blog/blog';
-import Technique from '../pages/technique/technique';
 import { colors } from '../../theme';
 import { BlogDetail } from '../common/blog-detail';
+import { Technique } from '../pages/technique/technique';
+
+// const Main = (props) => (
+//     <main style={{backgroundColor: colors.mainBackgroundColor}}>
+//         <Switch>
+//             <Route exact path='/' render={() => <Home isLoggedIn={props.isLoggedIn} /> } />
+//             <Route path='/browse' component={BrowseSwitch} />
+//             <Route path='/blog' component={BlogSwitch} />
+//             <Redirect from='*' to='/' />
+//         </Switch>
+//     </main>
+// );
+
+// const BrowseSwitch = () => (
+//     <section>
+//         <Switch>
+//             <Route exact path='/browse' component={Browse} />
+//             <Route path='/browse/:technique' component={Technique} />
+//         </Switch>
+//     </section>
+// );
 
 const Main = (props) => (
     <main style={{backgroundColor: colors.mainBackgroundColor}}>
         <Switch>
             <Route exact path='/' render={() => <Home isLoggedIn={props.isLoggedIn} /> } />
-            <Route path='/browse' component={BrowseSwitch} />
+            <Route path='/browse' render={(routeProps) => <BrowseSwitch isLoggedIn={props.isLoggedIn} {...routeProps} />} />
             <Route path='/blog' component={BlogSwitch} />
             <Redirect from='*' to='/' />
         </Switch>
     </main>
 );
 
-const BrowseSwitch = () => (
+const BrowseSwitch = (props) => (
     <section>
         <Switch>
             <Route exact path='/browse' component={Browse} />
-            <Route path='/browse/:technique' component={Technique} />
+            <Route path='/browse/:technique' render={() => <Technique isLoggedIn={props.isLoggedIn} {...props} /> }/>
         </Switch>
     </section>
 );
