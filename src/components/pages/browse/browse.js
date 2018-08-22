@@ -60,6 +60,37 @@ const h2Styles = {
     ...hStyles
 };
 
+const formStyles = {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+
+    margin: spacing.small
+};
+
+const inputStyles = {
+    alignSelf: 'center',
+    margin: 0,
+    marginRight: spacing.small,
+
+    color: colors.primaryTextColor,
+    fontSize: fontSizing.medium,
+    fontWeight: fontStyles.normal,
+    boxShadow: colors.cardBoxShadow,
+    backgroundColor: colors.inputBackgroundColor
+};
+
+const buttonStyles = {
+    backgroundColor: colors.green,
+    boxShadow: colors.cardBoxShadow,
+    fontWeight: fontStyles.bold,
+    color: colors.buttonTextColor,
+    fontSize: fontSizing.medium,
+    borderRadius: '7px',
+    margin: 0,
+    padding: spacing.xsmall
+};
+
 const vimeoService = new VimeoService();
 const techniqueTypes = {
     All: 'Gi and No-Gi',
@@ -116,6 +147,10 @@ export default class Browse extends React.Component {
         console.dir(e)
     };
 
+    search = () => {
+
+    };
+
     render() {
         //TODO ONCE INTERNET CONNECTION IS ESTABLISHED CHECK TO SEE THAT RENDERING IS TAKING PLACE.
         //TODO IMPLEMENT ONCLICK logic to change Technique header
@@ -130,6 +165,10 @@ export default class Browse extends React.Component {
                     </ul>
                 </nav>
                 <h1 style={h1Styles}>{this.state.headerLabel} Techniques</h1>
+                <form style={formStyles}>
+                    <input style={inputStyles} type="text" />
+                    <button style={buttonStyles} type="submit">Search</button>
+                </form>
                 <div style={videoListStyles}>
                     {/* {this.state.techniques.map(technique => {
                         return (

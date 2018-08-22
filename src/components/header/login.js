@@ -26,6 +26,7 @@ const inputButtonStyles = {
 };
 
 const pStyles = {
+    color: colors.primaryTextColor,
     fontSize: fontSizing.medium,
     padding: 0,
     margin: 0,
