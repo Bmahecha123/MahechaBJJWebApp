@@ -1,9 +1,7 @@
 import React from 'react';
 import { fontStyles, fontSizing, spacing, cardStyles, containerSizing, cardTitleStyles, colors } from '../../../theme';
 import { VimeoService } from '../../../services/vimeoService';
-import { Video } from '../../common/video';
 import { BlogService } from '../../../services/blog.service';
-import { Modal } from '../../common/modal';
 import { Link } from 'react-router-dom';
 
 const sectionStyles = {
@@ -45,29 +43,6 @@ const h1Styles = {
 const h2Styles = {
     fontSize: fontSizing.medium,
     ...hStyles
-};
-
-const linkStyles = {
-    textDecoration: 'none',
-    color: colors.buttonTextColor,
-    fontSize: fontSizing.medium
-};
-
-const buttonStyles = {
-    ...linkStyles,
-    backgroundColor: colors.buttonBackgroundColor,
-    boxShadow: colors.buttonBoxShadow,
-
-    alignSelf: 'center'
-};
-
-const pStyles = {
-    fontSize: fontSizing.medium,
-    padding: 0,
-    margin: 0,
-    marginBottom: spacing.small,
-    textAlign: 'center',
-    color: colors.primaryTextColor
 };
 
 const vimeoService = new VimeoService();
@@ -127,14 +102,11 @@ export default class Home extends React.Component {
                 <h2 style={{ ...h2Styles, marginBottom: 0 }}>What's New</h2>
                 <div style={divStylesRow}>
                     {this.state.techniques.map(technique => {
-                        // <Video key={technique.name} technique={technique} loggedIn={this.props.isLoggedIn} />
-                        {/* Implement similar configuration as blog post image for video! */ }
                         return (
                             <Link key={this.generateSlug(technique.name)} style={{ ...divStylesColumn, padding: 0, margin: spacing.medium, textDecoration: 'none' }}
                                 to={{
                                     pathname: `/browse/${this.generateSlug(technique.name)}`,
                                     state: {
-                                        //loggedIn: this.props.isLoggedIn,
                                         technique: technique
                                     }
                                 }}
