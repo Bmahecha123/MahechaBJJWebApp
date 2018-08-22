@@ -3,6 +3,7 @@ import { fontStyles, fontSizing, spacing, cardStyles, containerSizing, cardTitle
 import { VimeoService } from '../../../services/vimeoService';
 import { BlogService } from '../../../services/blog.service';
 import { Link } from 'react-router-dom';
+import { generateSlug, ENDPOINTS } from '../../../resources/constants';
 
 const sectionStyles = {
     display: 'flex',
@@ -65,12 +66,12 @@ export default class Home extends React.Component {
 
     async loadTechniques() {
         try {
-            const request = await vimeoService.getVimeoVideos(2);
+            const request = await vimeoService.getVimeoVideos(ENDPOINTS.getFullAccessTechniques(2));
             this.setState({
                 techniques: request.data
             });
         } catch (exception) {
-            console.log('EXCEPTIONNNN', exception);
+            console.log(exception);
         }
     }
 
@@ -88,13 +89,7 @@ export default class Home extends React.Component {
         }
     }
 
-    generateSlug = text => {
-        return text.replace(' ', '_');
-    }
-
     render() {
-        console.log('STATE');
-        console.dir(this.state);
         return (
             <section style={sectionStyles}>
                 <h1 style={{ ...h1Styles, marginBottom: 0 }}>Mahecha BJJ</h1>
@@ -103,15 +98,16 @@ export default class Home extends React.Component {
                 <div style={divStylesRow}>
                     {this.state.techniques.map(technique => {
                         return (
-                            <Link key={this.generateSlug(technique.name)} style={{ ...divStylesColumn, padding: 0, margin: spacing.medium, textDecoration: 'none' }}
+                            <Link key={generateSlug(technique.name)} style={{ ...divStylesColumn, padding: 0, margin: spacing.medium, textDecoration: 'none' }}
                                 to={{
-                                    pathname: `/browse/${this.generateSlug(technique.name)}`,
+                                    pathname: `/browse/${generateSlug(technique.name)}`,
                                     state: {
                                         technique: technique
                                     }
                                 }}
                                 replace={true}>
-                                <img style={{ ...cardStyles(containerSizing.medium), objectFit: 'cover', maxWidth: containerSizing.medium, maxHeight: '100%' }} alt="blog" src={technique.pictures.sizes[4].link} />
+                                {/* Is this replace required? */}
+                                <img style={{ ...cardStyles(containerSizing.medium), objectFit: 'cover', maxWidth: containerSizing.medium, maxHeight: '100%' }} alt="technique" src={technique.pictures.sizes[4].link} />
                                 <h2 style={{ ...h2Styles, ...cardTitleStyles(fontSizing.medium), marginBottom: spacing.medium, maxWidth: containerSizing.medium }}>{technique.name}</h2>
                             </Link>
                         );

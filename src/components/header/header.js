@@ -9,8 +9,6 @@ import './header.css';
 
 //syles
 const headerStyles = {
-    marginTop: spacing.xsmall,
-    marginBottom: spacing.xsmall,
     backgroundColor: colors.headerBackgroundColor,
     margin: 0
 };

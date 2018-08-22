@@ -27,8 +27,13 @@ const LOCALSTORAGE = {
     userName: 'mahechaBjjUserName'
 }
 
+const generateSlug = text => {
+    return text.replace(' ', '_');
+}
+
 export {
     BASEURL,
     ENDPOINTS,
-    LOCALSTORAGE
+    LOCALSTORAGE,
+    generateSlug
 }

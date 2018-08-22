@@ -6,7 +6,8 @@ const palette = {
     red: "#7c2529",
     olive: "#ae4a35",
     bronze: "#ae4a35",
-    brown: "#ae8635"
+    brown: "#ae8635",
+    green: "rgb(53,174,134)"
 };
 
 const fontStyles = {
@@ -16,6 +17,7 @@ const fontStyles = {
 
 const colors = {
     primaryTextColor: palette.black,
+    green: palette.green,
     buttonTextColor: palette.azure,
     mainBackgroundColor: palette.white,
     buttonBackgroundColor: palette.blue,
