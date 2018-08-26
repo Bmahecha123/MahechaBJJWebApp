@@ -19,6 +19,7 @@ const sectionStyles = {
 };
 
 const linkStyles = {
+    width: containerSizing.medium,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -36,6 +37,7 @@ const ulStyles = {
 const videoListStyles = {
     ...ulStyles,
     flexWrap: 'wrap',
+    flexGrow: 1
 
 };
 
@@ -192,7 +194,7 @@ export default class Browse extends React.Component {
                 <h1 style={h1Styles}>{this.state.headerLabel} Techniques</h1>
                 <form style={formStyles}>
                     <input style={inputStyles} type="text" />
-                    <button style={buttonStyles} type="submit">Search</button>
+                    {/* <button style={buttonStyles} type="submit">Search</button> */}
                 </form>
                 <div style={videoListStyles}>
                     {this.state.techniques.map(technique => {

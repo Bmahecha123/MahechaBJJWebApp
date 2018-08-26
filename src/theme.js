@@ -72,7 +72,7 @@ const cardTitleStyles = (fontSize) => {
         paddingTop: spacing.small,
         margin: 0,
         fontWeight: fontStyles.bold,
-        textAlign: 'center'
+        alignSelf: 'center',
     };
 };
 
