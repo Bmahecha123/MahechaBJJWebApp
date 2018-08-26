@@ -18,6 +18,14 @@ const sectionStyles = {
     marginTop: spacing.small
 };
 
+const linkStyles = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    textDecoration: 'none',
+    margin: spacing.small
+};
+
 const ulStyles = {
     ...flexStyles,
     flexDirection: 'row',
@@ -27,7 +35,8 @@ const ulStyles = {
 
 const videoListStyles = {
     ...ulStyles,
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+
 };
 
 const liStyles = {
@@ -65,7 +74,8 @@ const formStyles = {
     flexDirection: 'row',
     justifyContent: 'center',
 
-    margin: spacing.small
+    margin: spacing.small,
+    marginBottom: spacing.medium
 };
 
 const inputStyles = {
@@ -92,11 +102,16 @@ const buttonStyles = {
 };
 
 const vimeoService = new VimeoService();
-const techniqueTypes = {
+const techniqueHeaders = {
     All: 'Gi and No-Gi',
     Gi: 'Gi',
     NoGi: 'No-Gi'
 }
+// const techniqueTypes = ['All', 'Gi', 'No-Gi'];
+let techniqueTypes = new Map();
+techniqueTypes.set('All', 'Gi and No-Gi');
+techniqueTypes.set('Gi', 'Gi');
+techniqueTypes.set('No-Gi', 'No-Gi');
 
 export default class Browse extends React.Component {
     constructor(props) {
@@ -105,21 +120,26 @@ export default class Browse extends React.Component {
             techniques: [],
             nextPage: '',
             previousPage: '',
-            headerLabel: techniqueTypes.All
+            headerLabel: techniqueTypes.get('All')
         };
     }
 
     async componentDidMount() {
+        console.log('COMPONSNE DID MOUNT');
         await this.loadTechniques();
     }
 
     async loadTechniques() {
         let endpoint;
-        if (this.state.headerLabel === techniqueTypes.Gi) {
+        if (this.state.headerLabel === techniqueTypes.get('Gi')) {
+            console.log('CALLING GI!');
             endpoint = ENDPOINTS.getGiTechniques(10);
-        } else if (this.state.headerLabel === techniqueTypes.NoGi) {
+        } else if (this.state.headerLabel === techniqueTypes.get('No-Gi')) {
+            console.log('CALLING NOGI!');
             endpoint = ENDPOINTS.getNoGiTechniques(10);
         } else {
+            console.log('CALLING GI ADN NOGI!');
+
             endpoint = ENDPOINTS.getFullAccessTechniques(10);
         }
 
@@ -142,9 +162,13 @@ export default class Browse extends React.Component {
 
     };
 
-    updateTechniqueHeader = e => {
-        console.log('EVENTTTT');
-        console.dir(e)
+    updateTechniqueHeader = async (e) => {
+        let text = e.currentTarget.innerText;
+        console.log(techniqueTypes.get(text));
+
+        this.setState({
+           headerLabel: techniqueTypes.get(text) 
+        });
     };
 
     search = () => {
@@ -155,13 +179,14 @@ export default class Browse extends React.Component {
         //TODO ONCE INTERNET CONNECTION IS ESTABLISHED CHECK TO SEE THAT RENDERING IS TAKING PLACE.
         //TODO IMPLEMENT ONCLICK logic to change Technique header
         //TODO LOOK TO IMPLEMENT A CATEGORIES SECTION PERHAPS ON A RIGHT SIDE NAV? LOOK INTO IT!
+        console.log(this.state);
         return (
             <section style={sectionStyles}>
                 <nav>
                     <ul style={ulStyles}>
-                        <li style={liStyles}>All</li>
-                        <li style={liStyles}>Gi</li>
-                        <li style={liStyles}>No-Gi</li>
+                        <li style={liStyles} onClick={(e => this.updateTechniqueHeader(e))}>All</li>
+                        <li style={liStyles} onClick={(e => this.updateTechniqueHeader(e))}>Gi</li>
+                        <li style={liStyles} onClick={(e => this.updateTechniqueHeader(e))}>No-Gi</li>
                     </ul>
                 </nav>
                 <h1 style={h1Styles}>{this.state.headerLabel} Techniques</h1>
@@ -170,9 +195,10 @@ export default class Browse extends React.Component {
                     <button style={buttonStyles} type="submit">Search</button>
                 </form>
                 <div style={videoListStyles}>
-                    {/* {this.state.techniques.map(technique => {
+                    {this.state.techniques.map(technique => {
                         return (
                             <Link key={generateSlug(technique.name)}
+                                style={linkStyles}
                                 to={{
                                     pathname: `/browse/${generateSlug(technique.name)}`,
                                     state: {
@@ -183,7 +209,7 @@ export default class Browse extends React.Component {
                                 <h2 style={{ ...h2Styles, ...cardTitleStyles(fontSizing.medium), marginBottom: spacing.medium, maxWidth: containerSizing.medium }}>{technique.name}</h2>
                             </Link>
                         );
-                    })} */}
+                    })}
                 </div>
                 <ul style={ulStyles}>
                     <li style={liStyles}>Prev</li>
