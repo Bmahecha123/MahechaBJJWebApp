@@ -1,4 +1,5 @@
 const BASEURL = process.env.USER_SERVICE || `https://mahechabjj.cfapps.io/`;
+const BASEVIMEOURL = 'https://api.vimeo.com';
 
 const ENDPOINTS = {
     login: 'user/findByEmail',
@@ -12,13 +13,16 @@ const ENDPOINTS = {
     deletePlaylist: 'user/deleteplaylist/',
     deleteVideo: 'user/deleteVideo/',
     getFullAccessTechniques: (count) => {
-        return `https://api.vimeo.com/me/albums/4802536/videos?access_token=5d3d5a50aae149bd4765bbddf7d94952&version=3.2&per_page=${count}`;
+        return `${BASEVIMEOURL}/me/albums/4802536/videos?access_token=5d3d5a50aae149bd4765bbddf7d94952&version=3.2&per_page=${count}`;
     },
     getGiTechniques: (count) => {
-        return `https://api.vimeo.com/me/albums/4802538/videos?access_token=5d3d5a50aae149bd4765bbddf7d94952&version=3.2&per_page=${count}`;
+        return `${BASEVIMEOURL}/me/albums/4802538/videos?access_token=5d3d5a50aae149bd4765bbddf7d94952&version=3.2&per_page=${count}`;
     },
     getNoGiTechniques: (count) => {
-        return `https://api.vimeo.com/me/albums/4802539/videos?access_token=5d3d5a50aae149bd4765bbddf7d94952&version=3.2&per_page=${count}`;
+        return `${BASEVIMEOURL}/me/albums/4802539/videos?access_token=5d3d5a50aae149bd4765bbddf7d94952&version=3.2&per_page=${count}`;
+    },
+    vimeoPaging: (nextUrl) => {
+        return `${BASEVIMEOURL}${nextUrl}`;
     },
     getAllBlogPosts: 'https://api.tumblr.com/v2/blog/mahechabjj/posts?api_key=vPbcUP6WSBbQ6RiVQC5ZO9paNGQE7QT4kXGefQXKlkM2jBJdos'
 };

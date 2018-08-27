@@ -1,5 +1,3 @@
-import { ENDPOINTS } from "../resources/constants";
-
 export class VimeoService {
     getVimeoVideos = async (endpoint) => {
         try {

@@ -104,76 +104,41 @@ const buttonStyles = {
 };
 
 const vimeoService = new VimeoService();
-const techniqueHeaders = {
-    All: 'Gi and No-Gi',
-    Gi: 'Gi',
-    NoGi: 'No-Gi'
-}
-// const techniqueTypes = ['All', 'Gi', 'No-Gi'];
-let techniqueTypes = new Map();
-techniqueTypes.set('All', 'Gi and No-Gi');
-techniqueTypes.set('Gi', 'Gi');
-techniqueTypes.set('No-Gi', 'No-Gi');
 
 export default class Browse extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             techniques: [],
-            nextPage: '',
-            previousPage: '',
-            headerLabel: techniqueTypes.get('All')
+            paging: {},
         };
     }
 
     async componentDidMount() {
         console.log('COMPONSNE DID MOUNT');
-        await this.loadTechniques();
+
+        await this.loadTechniques(ENDPOINTS.getFullAccessTechniques(12));
     }
 
-    async loadTechniques() {
-        let endpoint;
-        if (this.state.headerLabel === techniqueTypes.get('Gi')) {
-            console.log('CALLING GI!');
-            endpoint = ENDPOINTS.getGiTechniques(10);
-        } else if (this.state.headerLabel === techniqueTypes.get('No-Gi')) {
-            console.log('CALLING NOGI!');
-            endpoint = ENDPOINTS.getNoGiTechniques(10);
-        } else {
-            console.log('CALLING GI ADN NOGI!');
-
-            endpoint = ENDPOINTS.getFullAccessTechniques(10);
-        }
+    async loadTechniques(endpoint) {
 
         //TODO Implement logic to determine whether the user has a NoGi package or a Gi Package or Both....
         try {
             const request = await vimeoService.getVimeoVideos(endpoint);
             this.setState({
-                techniques: request.data
+                techniques: request.data,
+                paging: request.paging
             });
         } catch (exception) {
             console.log(exception);
         }
     }
 
-    nextPage = () => {
-
+    updateContent = async (e, endpoint) => {
+        await this.loadTechniques(endpoint);
     };
 
-    previousPage = () => {
-
-    };
-
-    updateTechniqueHeader = async (e) => {
-        let text = e.currentTarget.innerText;
-        console.log(techniqueTypes.get(text));
-
-        this.setState({
-           headerLabel: techniqueTypes.get(text) 
-        });
-    };
-
-    search = () => {
+    search = (e, page) => {
 
     };
 
@@ -186,16 +151,16 @@ export default class Browse extends React.Component {
             <section style={sectionStyles}>
                 <nav>
                     <ul style={ulStyles}>
-                        <li style={liStyles} onClick={(e => this.updateTechniqueHeader(e))}>All</li>
-                        <li style={liStyles} onClick={(e => this.updateTechniqueHeader(e))}>Gi</li>
-                        <li style={liStyles} onClick={(e => this.updateTechniqueHeader(e))}>No-Gi</li>
+                        <li style={liStyles} onClick={(e => this.updateContent(e, ENDPOINTS.getFullAccessTechniques(12)))}>All</li>
+                        <li style={liStyles} onClick={(e => this.updateContent(e, ENDPOINTS.getGiTechniques(12)))}>Gi</li>
+                        <li style={liStyles} onClick={(e => this.updateContent(e, ENDPOINTS.getNoGiTechniques(12)))}>No-Gi</li>
                     </ul>
                 </nav>
                 <h1 style={h1Styles}>{this.state.headerLabel} Techniques</h1>
-                <form style={formStyles}>
+                {/* <form style={formStyles}>
                     <input style={inputStyles} type="text" />
-                    {/* <button style={buttonStyles} type="submit">Search</button> */}
-                </form>
+                    <button style={buttonStyles} type="submit">Search</button>
+                </form> */}
                 <div style={videoListStyles}>
                     {this.state.techniques.map(technique => {
                         return (
@@ -213,9 +178,11 @@ export default class Browse extends React.Component {
                         );
                     })}
                 </div>
-                <ul style={ulStyles}>
-                    <li style={liStyles}>Prev</li>
-                    <li style={liStyles}>Next</li>
+                <ul style={{...ulStyles, justifyContent: 'center'}}>
+                    {this.state.paging.first && <li style={{...liStyles, margin: spacing.medium}} onClick={(e => this.updateContent(e, ENDPOINTS.vimeoPaging(this.state.paging.first)))}>First</li>}
+                    {this.state.paging.previous && <li style={{...liStyles, margin: spacing.medium}} onClick={(e => this.updateContent(e, ENDPOINTS.vimeoPaging(this.state.paging.previous)))}>Prev</li>}
+                    {this.state.paging.next && <li style={{...liStyles, margin: spacing.medium}} onClick={(e => this.updateContent(e, ENDPOINTS.vimeoPaging(this.state.paging.next)))}>Next</li>}
+                    {this.state.paging.last && <li style={{...liStyles, margin: spacing.medium}} onClick={(e => this.updateContent(e, ENDPOINTS.vimeoPaging(this.state.paging.last)))}>Last</li>}
                 </ul>
             </section>
         );
