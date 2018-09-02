@@ -27,6 +27,41 @@ const ENDPOINTS = {
     getAllBlogPosts: 'https://api.tumblr.com/v2/blog/mahechabjj/posts?api_key=vPbcUP6WSBbQ6RiVQC5ZO9paNGQE7QT4kXGefQXKlkM2jBJdos'
 };
 
+const STUBS = {
+    techniques: [{
+        name: 'Spider Stuff',
+        pictures: {
+            sizes: [{}, {}, {}, {}, {
+                link: require('../assets/loadingImage.png')
+            }]
+        }
+    }, {
+        name: 'Lasso Stuff',
+        pictures: {
+            sizes: [{}, {}, {}, {}, {
+                link: require('../assets/loadingImage.png')
+            }]
+        }
+    }],
+    technique: {
+        name: 'Spider Stuff',
+        pictures: {
+            sizes: [{}, {}, {}, {}, {
+                link: require('../assets/loadingImage.png')
+            }]
+        }
+    },
+    blogPost: {
+        summary: 'Blog Post did not load. Please refresh and try to load again!',
+        photos: [{
+            original_size: {
+                url: require('../assets/loadingImage.png')
+            }
+        }],
+        caption: 'Blog Post'
+    }
+};
+
 const LOCALSTORAGE = {
     userName: 'mahechaBjjUserName'
 }
@@ -39,5 +74,6 @@ export {
     BASEURL,
     ENDPOINTS,
     LOCALSTORAGE,
-    generateSlug
+    generateSlug,
+    STUBS
 }

@@ -3,7 +3,7 @@ import { fontStyles, fontSizing, spacing, cardStyles, containerSizing, cardTitle
 import { VimeoService } from '../../../services/vimeoService';
 import { BlogService } from '../../../services/blog.service';
 import { Link } from 'react-router-dom';
-import { generateSlug, ENDPOINTS } from '../../../resources/constants';
+import { generateSlug, ENDPOINTS, STUBS } from '../../../resources/constants';
 
 const sectionStyles = {
     display: 'flex',
@@ -53,9 +53,9 @@ export default class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            techniques: [],
-            blogPosts: {},
-            blogImage: ""
+            techniques: STUBS.techniques,
+            blogPosts: STUBS.blogPost,
+            blogImage: require('../../../assets/loadingImage.png')
         };
     }
 
@@ -67,9 +67,11 @@ export default class Home extends React.Component {
     async loadTechniques() {
         try {
             const request = await vimeoService.getVimeoVideos(ENDPOINTS.getFullAccessTechniques(2));
-            this.setState({
-                techniques: request.data
-            });
+            if (request.data !== undefined) {
+                this.setState({
+                    techniques: request.data
+                });
+            }
         } catch (exception) {
             console.log(exception);
         }
@@ -80,16 +82,19 @@ export default class Home extends React.Component {
             const request = await blogService.getMostRecentBlogPosts();
             console.log('REQUESTTTT');
             console.log(request);
-            this.setState({
-                blogPosts: request,
-                blogImage: request.photos[0].original_size.url
-            });
+            if (request !== undefined) {
+                this.setState({
+                    blogPosts: request,
+                    blogImage: request.photos[0].original_size.url
+                });
+            }
         } catch (exception) {
             console.log(exception);
         }
     }
 
     render() {
+        console.log('state!!', this.state);
         return (
             <section style={sectionStyles}>
                 <h1 style={{ ...h1Styles, marginBottom: 0 }}>Mahecha BJJ</h1>

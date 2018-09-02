@@ -8,6 +8,7 @@ h2, p {
 h2 {
     font-weight: 900;
     font-size: 3rem;
+    text-align: center;
 }
 
 p {

@@ -2,6 +2,7 @@ import React from 'react';
 import { BlogService } from '../../../services/blog.service';
 import { cardStyles, containerSizing, cardTitleStyles, fontSizing, spacing, fontStyles, colors } from '../../../theme';
 import { Link } from 'react-router-dom';
+import { generateSlug } from '../../../resources/constants';
 
 const sectionStyles = {
     display: 'flex',
@@ -67,7 +68,7 @@ export default class Blog extends React.Component {
             <section style={sectionStyles}>
                 {this.state.blogPosts.map(blogPost => {
                     return (
-                        <Link style={linkStyles}
+                        <Link key={generateSlug(blogPost.summary)} style={linkStyles}
                             to={{
                                 pathname: `/blog/${blogPost.slug}`,
                                 state: {

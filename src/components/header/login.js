@@ -2,22 +2,28 @@ import React from 'react';
 import { UserService } from '../../services/user.service';
 import { LOCALSTORAGE } from '../../resources/constants';
 import './login.css';
-import { colors, fontSizing, fontStyles, spacing } from '../../theme';
+import { colors, fontSizing, fontStyles, spacing, containerSizing } from '../../theme';
 import { Modal } from '../common/modal';
 
 const userService = new UserService();
 
 //styles
 const formStyles = {
-    margin: spacing.small
+    display: 'flex',
+    flexDirection: 'column',
+    margin: spacing.small,
+    alignItems: 'center',
+    marginTop: 0
 };
 
 const inputStyles = {
     color: colors.primaryTextColor,
-    fontSize: fontSizing.small,
+    fontSize: fontSizing.medium,
     fontWeight: fontStyles.normal,
     boxShadow: colors.buttonBoxShadow,
-    backgroundColor: colors.inputBackgroundColor
+    backgroundColor: colors.inputBackgroundColor,
+
+    width: containerSizing.medium
 };
 
 const inputButtonStyles = {
