@@ -146,7 +146,8 @@ export default class Browse extends React.Component {
         //TODO ONCE INTERNET CONNECTION IS ESTABLISHED CHECK TO SEE THAT RENDERING IS TAKING PLACE.
         //TODO IMPLEMENT ONCLICK logic to change Technique header
         //TODO LOOK TO IMPLEMENT A CATEGORIES SECTION PERHAPS ON A RIGHT SIDE NAV? LOOK INTO IT!
-        console.log(this.state);
+        console.log('BROWSE STATE!!', this.state);
+        console.log('BROWSE PROPS!!', this.props);
         return (
             <section style={sectionStyles}>
                 <nav>

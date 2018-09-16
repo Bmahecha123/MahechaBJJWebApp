@@ -8,6 +8,7 @@ const containerStyles = {
 };
 
 export const Video = (props) => {
+    console.log('VIDEO PROPS!', props);
     return (
         <div key={props.technique.name} style={{...containerStyles, maxWidth: props.maxWidth}}>
             <video style={{ ...cardStyles('100%'), pointerEvents: !props.loggedIn ? 'none' : ''}} src={props.technique.files[1].link} controls controlsList="nodownload">

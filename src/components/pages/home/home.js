@@ -65,6 +65,8 @@ export default class Home extends React.Component {
     }
 
     async loadTechniques() {
+
+        //TODO ADD LOGIC TO LOAD TECHNIQUES BASED ON PACKAGES THAT THE USER HAS ACCESS TO...
         try {
             const request = await vimeoService.getVimeoVideos(ENDPOINTS.getFullAccessTechniques(2));
             if (request.data !== undefined) {
@@ -95,6 +97,7 @@ export default class Home extends React.Component {
 
     render() {
         console.log('state!!', this.state);
+        console.log('HOME PROPS', this.props);
         return (
             <section style={sectionStyles}>
                 <h1 style={{ ...h1Styles, marginBottom: 0 }}>Mahecha BJJ</h1>

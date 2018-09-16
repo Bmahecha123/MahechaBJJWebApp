@@ -4,6 +4,7 @@ import React from 'react';
 import Header from './components/header/header';
 import Main from './components/main/main';
 import Footer from './components/footer/footer';
+import { throws } from 'assert';
 
 const appStyles = {
     display: 'grid',
@@ -15,13 +16,16 @@ export default class App extends React.Component {
         super(props);
 
         this.state = {
-            isLoggedIn: false
+            isLoggedIn: false,
+            packages: {}
         };
     }
 
-    handleLogin = (isLoggedIn) => {
+    handleLogin = (isLoggedIn, packages) => {
+        console.log('MAIN PACKAGES', packages);
         this.setState({
-            isLoggedIn: isLoggedIn
+            isLoggedIn: isLoggedIn,
+            packages: packages
         });
     };
 
@@ -33,11 +37,11 @@ export default class App extends React.Component {
     };
 
     render() {
-        console.log('APP LOGIN STATE', this.state.isLoggedIn);
+        console.log('APP STATE', this.state);
         return (
             <div style={appStyles}>
                 <Header onLogin={this.handleLogin} onLogout={this.handleLogout} isLoggedIn={this.state.isLoggedIn} />
-                <Main isLoggedIn={this.state.isLoggedIn} />
+                <Main isLoggedIn={this.state.isLoggedIn} packages={this.state.packages} />
                 <Footer isLoggedIn={this.state.isLoggedIn} />
             </div>
         );

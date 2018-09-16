@@ -72,7 +72,7 @@ export default class Login extends React.Component {
                 });
                 this.props.onLogin(false);
             } else {
-                this.props.onLogin(true);
+                this.props.onLogin(true, user.packages);
             }
         }
     }
@@ -111,7 +111,8 @@ export default class Login extends React.Component {
                 console.log('User saved to local storage.') :
                 console.log('User has not been saved to local storage.');
 
-            this.props.onLogin(true);
+            console.log('USER', user.packages);
+            this.props.onLogin(true, user.packages);
         }
     }
 

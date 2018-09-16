@@ -62,12 +62,13 @@ export default class Header extends React.Component {
         };
     }
 
-    handleLogin = (isLoggedIn) => {
+    handleLogin = (isLoggedIn, packages) => {
+        console.log('HEADER LOGIN', packages);
         this.setState({
             isLoggedIn: isLoggedIn,
             isOpen: false
         });
-        this.props.onLogin(isLoggedIn);
+        this.props.onLogin(isLoggedIn, packages);
     }
 
     handleLogout = () => {

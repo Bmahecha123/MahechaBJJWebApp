@@ -1,4 +1,4 @@
-const BASEURL = process.env.USER_SERVICE || `https://mahechabjj.cfapps.io/`;
+const BASEURL = process.env.USER_SERVICE || `https://mahechabjj-kotlin.cfapps.io/`;
 const BASEVIMEOURL = 'https://api.vimeo.com';
 
 const ENDPOINTS = {
