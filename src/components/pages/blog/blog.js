@@ -53,8 +53,6 @@ export default class Blog extends React.Component {
     async loadBlogPosts() {
         try {
             const request = await blogService.getAllBlogPosts();
-            console.log('REQUESTTTT');
-            console.log(request);
             this.setState({
                 blogPosts: request
             });

@@ -22,7 +22,6 @@ export default class App extends React.Component {
     }
 
     handleLogin = (isLoggedIn, packages) => {
-        console.log('MAIN PACKAGES', packages);
         this.setState({
             isLoggedIn: isLoggedIn,
             packages: packages
@@ -33,11 +32,9 @@ export default class App extends React.Component {
         this.setState({
             isLoggedIn: false
         });
-        console.log('USER LOGGED OUT!!');
     };
 
     render() {
-        console.log('APP STATE', this.state);
         return (
             <div style={appStyles}>
                 <Header onLogin={this.handleLogin} onLogout={this.handleLogout} isLoggedIn={this.state.isLoggedIn} />

@@ -82,8 +82,6 @@ export default class Home extends React.Component {
     async loadBlogPosts() {
         try {
             const request = await blogService.getMostRecentBlogPosts();
-            console.log('REQUESTTTT');
-            console.log(request);
             if (request !== undefined) {
                 this.setState({
                     blogPosts: request,
@@ -96,8 +94,6 @@ export default class Home extends React.Component {
     }
 
     render() {
-        console.log('state!!', this.state);
-        console.log('HOME PROPS', this.props);
         return (
             <section style={sectionStyles}>
                 <h1 style={{ ...h1Styles, marginBottom: 0 }}>Mahecha BJJ</h1>

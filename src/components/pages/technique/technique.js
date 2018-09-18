@@ -48,12 +48,7 @@ export class Technique extends React.Component {
     };
 
     render() {
-        console.log('PROPS');
-        console.dir(this.props);
         const { technique } = this.props.location.state;
-
-        console.log('Logged in?', this.props.isLoggedIn)
-
         return (
             <section style={sectionStyles} onClick={!this.state.showError ? this.toggleError : null}>
                 <Video

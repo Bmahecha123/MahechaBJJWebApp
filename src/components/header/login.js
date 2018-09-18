@@ -111,7 +111,6 @@ export default class Login extends React.Component {
                 console.log('User saved to local storage.') :
                 console.log('User has not been saved to local storage.');
 
-            console.log('USER', user.packages);
             this.props.onLogin(true, user.packages);
         }
     }
@@ -123,7 +122,6 @@ export default class Login extends React.Component {
     }
 
     render() {
-        console.log('user issssss ', this.props.loggedIn);
         if (this.state.isOpen) {
             return (
                 <Modal isOpen={this.state.isOpen}>

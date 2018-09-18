@@ -63,7 +63,6 @@ export default class Header extends React.Component {
     }
 
     handleLogin = (isLoggedIn, packages) => {
-        console.log('HEADER LOGIN', packages);
         this.setState({
             isLoggedIn: isLoggedIn,
             isOpen: false
@@ -93,7 +92,6 @@ export default class Header extends React.Component {
     }
 
     render() {
-        console.log('HEADER LOGIN STTE!!', this.state.isLoggedIn);
         return (
             <header style={headerStyles}>
                 <nav>

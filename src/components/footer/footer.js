@@ -37,7 +37,6 @@ const btnGroupStyles = {
 };
 
 export default class Footer extends React.Component {
-
     render() {
         if (!this.props.isLoggedIn) {
             return (

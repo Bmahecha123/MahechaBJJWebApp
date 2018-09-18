@@ -19,8 +19,6 @@ const imgStyles = {
 
 export const BlogDetail = (props) => {
     const { post } = props.location.state;
-    console.log('PROPSSSS');
-    console.log(props);
 
     return (
         <section style={sectionStyles}>
