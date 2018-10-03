@@ -115,12 +115,10 @@ export default class Browse extends React.Component {
     }
 
     async componentDidMount() {
-        await this.loadTechniques(ENDPOINTS.getFullAccessTechniques(12));
+        await this.loadTechniques(this.configureEndpoint());
     }
 
     async loadTechniques(endpoint) {
-
-        //TODO Implement logic to determine whether the user has a NoGi package or a Gi Package or Both....
         try {
             const request = await vimeoService.getVimeoVideos(endpoint);
             this.setState({
@@ -132,6 +130,18 @@ export default class Browse extends React.Component {
         }
     }
 
+    configureEndpoint() {
+        if (this.props.isLoggedIn) {
+            if (this.props.packages.giAndNoGiJiuJitsu)
+                return ENDPOINTS.getFullAccessTechniques(12);
+            else if (this.props.packages.noGiJiuJitsu)
+                return ENDPOINTS.getNoGiTechniques(12);
+            else
+                return ENDPOINTS.getGiTechniques(12);
+        } else
+            return ENDPOINTS.getFullAccessTechniques(12);
+    }
+
     updateContent = async (e, endpoint) => {
         await this.loadTechniques(endpoint);
     };
@@ -141,22 +151,20 @@ export default class Browse extends React.Component {
     };
 
     render() {
-        //TODO IMPLEMENT ONCLICK logic to change Technique header
         //TODO LOOK TO IMPLEMENT A CATEGORIES SECTION PERHAPS ON A RIGHT SIDE NAV? LOOK INTO IT!
+        console.log(this.props.packages.giAndNoGiJiuJitsu);
+        console.log(this.props.isLoggedIn);
         return (
             <section style={sectionStyles}>
-                <nav>
-                    <ul style={ulStyles}>
-                        <li style={liStyles} onClick={(e => this.updateContent(e, ENDPOINTS.getFullAccessTechniques(12)))}>All</li>
-                        <li style={liStyles} onClick={(e => this.updateContent(e, ENDPOINTS.getGiTechniques(12)))}>Gi</li>
-                        <li style={liStyles} onClick={(e => this.updateContent(e, ENDPOINTS.getNoGiTechniques(12)))}>No-Gi</li>
-                    </ul>
-                </nav>
+                {this.props.packages.giAndNoGiJiuJitsu && this.props.isLoggedIn &&
+                    <nav>
+                        <ul style={ulStyles}>
+                            <li style={liStyles} onClick={(e => this.updateContent(e, ENDPOINTS.getFullAccessTechniques(12)))}>All</li>
+                            <li style={liStyles} onClick={(e => this.updateContent(e, ENDPOINTS.getGiTechniques(12)))}>Gi</li>
+                            <li style={liStyles} onClick={(e => this.updateContent(e, ENDPOINTS.getNoGiTechniques(12)))}>No-Gi</li>
+                        </ul>
+                    </nav>}
                 <h1 style={h1Styles}>{this.state.headerLabel} Techniques</h1>
-                {/* <form style={formStyles}>
-                    <input style={inputStyles} type="text" />
-                    <button style={buttonStyles} type="submit">Search</button>
-                </form> */}
                 <div style={videoListStyles}>
                     {this.state.techniques.map(technique => {
                         return (
@@ -174,11 +182,11 @@ export default class Browse extends React.Component {
                         );
                     })}
                 </div>
-                <ul style={{...ulStyles, justifyContent: 'center'}}>
-                    {this.state.paging.first && <li style={{...liStyles, margin: spacing.medium}} onClick={(e => this.updateContent(e, ENDPOINTS.vimeoPaging(this.state.paging.first)))}>First</li>}
-                    {this.state.paging.previous && <li style={{...liStyles, margin: spacing.medium}} onClick={(e => this.updateContent(e, ENDPOINTS.vimeoPaging(this.state.paging.previous)))}>Prev</li>}
-                    {this.state.paging.next && <li style={{...liStyles, margin: spacing.medium}} onClick={(e => this.updateContent(e, ENDPOINTS.vimeoPaging(this.state.paging.next)))}>Next</li>}
-                    {this.state.paging.last && <li style={{...liStyles, margin: spacing.medium}} onClick={(e => this.updateContent(e, ENDPOINTS.vimeoPaging(this.state.paging.last)))}>Last</li>}
+                <ul style={{ ...ulStyles, justifyContent: 'center' }}>
+                    {this.state.paging.first && <li style={{ ...liStyles, margin: spacing.medium }} onClick={(e => this.updateContent(e, ENDPOINTS.vimeoPaging(this.state.paging.first)))}>First</li>}
+                    {this.state.paging.previous && <li style={{ ...liStyles, margin: spacing.medium }} onClick={(e => this.updateContent(e, ENDPOINTS.vimeoPaging(this.state.paging.previous)))}>Prev</li>}
+                    {this.state.paging.next && <li style={{ ...liStyles, margin: spacing.medium }} onClick={(e => this.updateContent(e, ENDPOINTS.vimeoPaging(this.state.paging.next)))}>Next</li>}
+                    {this.state.paging.last && <li style={{ ...liStyles, margin: spacing.medium }} onClick={(e => this.updateContent(e, ENDPOINTS.vimeoPaging(this.state.paging.last)))}>Last</li>}
                 </ul>
             </section>
         );

@@ -42,7 +42,7 @@ const Main = (props) => (
 const BrowseSwitch = (props) => (
     <section>
         <Switch>
-            <Route exact path='/browse' render={() => <Browse packages={props.packages} /> } />
+            <Route exact path='/browse' render={() => <Browse isLoggedIn={props.isLoggedIn} packages={props.packages} /> } />
             <Route path='/browse/:technique' render={() => <Technique isLoggedIn={props.isLoggedIn} {...props} /> }/>
         </Switch>
     </section>

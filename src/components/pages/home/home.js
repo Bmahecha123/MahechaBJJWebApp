@@ -65,10 +65,10 @@ export default class Home extends React.Component {
     }
 
     async loadTechniques() {
+        const ENDPONT =  this.configureEndpoint();
 
-        //TODO ADD LOGIC TO LOAD TECHNIQUES BASED ON PACKAGES THAT THE USER HAS ACCESS TO...
         try {
-            const request = await vimeoService.getVimeoVideos(ENDPOINTS.getFullAccessTechniques(2));
+            const request = await vimeoService.getVimeoVideos(ENDPONT);
             if (request.data !== undefined) {
                 this.setState({
                     techniques: request.data
@@ -77,6 +77,18 @@ export default class Home extends React.Component {
         } catch (exception) {
             console.log(exception);
         }
+    }
+
+    configureEndpoint() {
+        if (this.props.isLoggedIn) {
+            if (this.props.packages.giAndNoGiJiuJitsu)
+                return ENDPOINTS.getFullAccessTechniques(2);
+            else if (this.props.packages.noGiJiuJitsu)
+                return ENDPOINTS.getNoGiTechniques(2);
+            else
+                return ENDPOINTS.getGiTechniques(2);
+        } else 
+            return ENDPOINTS.getFullAccessTechniques(2);
     }
 
     async loadBlogPosts() {
