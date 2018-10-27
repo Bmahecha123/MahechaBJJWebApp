@@ -1,0 +1,24 @@
+header {
+    display: flex;
+    flex-direction: column;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+li {
+    list-style-type: none;
+    border-radius: 7px;
+    padding: 5px;
+}
+
+li:hover, button:hover {
+    cursor: pointer;
+}
+
