@@ -78,7 +78,7 @@ export default class Login extends React.Component {
     }
 
     handleLogin = async () => {
-        let userName = document.getElementById('userName').value;
+        let userName = document.getElementById('userName').value.toLowerCase();
         let passWord = document.getElementById('passWord').value;
         let loginBtn = document.getElementById('loginBtn');
 
